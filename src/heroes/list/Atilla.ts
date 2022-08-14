@@ -5,7 +5,7 @@ import { HeroAttribute, HeroElement } from "../heroes-attr";
 export default new Hero ({
     id: 'Atilla',
     attr: new HeroAttribute({hp: 7250, dmg: 105, dxt: 10}),
-    description: "Атилла - царь гуннов, жестокий монарх.\n- А как он стал царём?\n- Аларих убил своего брата..",
+    description: "Атилла - царь гуннов, жестокий монарх.\n- А как он стал царём?\n- Атилла убил своего брата..",
     isAvailableInShop: true,
     isVip: false,
     emoji: "<:Atilla:1006222992071741600>",
