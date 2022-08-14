@@ -15,7 +15,7 @@ export const SUPPORT_SERVER_LINK: string = processOr("SUPPORT_SERVER_LINK", "htt
 
 export const WebName: string = processOr("WebName", "http://localhost:3003");
 
-export const PORT = 3003;
+export const PORT = +processOr("PORT", 3000 + "");
 
 export const OneDayMs = 86400 * 1000;
 
