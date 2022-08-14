@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "lib": ["ESNext"],
+        "esModuleInterop": true,
+        "watch": false,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "outDir": "dist",
+        "target": "ESNext",
+        "module": "CommonJS"
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src"
+    ]
+}
