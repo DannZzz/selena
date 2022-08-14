@@ -3,7 +3,7 @@ import http from "http";
 import bodyParser from "body-parser";
 import socketHandling from "./socketHandling";
 import { PORT } from "../config";
-import { Io } from "../structures/io";
+import { Io } from "../structures/Io";
 import Database from "../database/db";
 import { Functions } from "../structures/Functions";
 import { UserKeysApi } from "../database/models/User";
