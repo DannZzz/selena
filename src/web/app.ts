@@ -44,22 +44,19 @@ export function createApp () {
             heroes: Object.entries(game.heroes || {}).map(([heroId, mongoHero]) => {
                 const hero = Heroes.find(heroId);
                 const skin = Heroes.findSkin(heroId, mongoHero.skin)
-                const a = {
+                return {
                     avatarURL: hero.avatarURL(skin?.id || hero.id),
                     games: mongoHero.games || 0,
                     wins: mongoHero.wins || 0,
                     heroId: heroId as HeroId,
                     heroName: hero.name,
-                    skin: skin.name
+                    skin: skin.name,
+                    // access
+                    xp: access ? mongoHero.xp || 0 : null,
+                    level: access ? Levels.levelFor(mongoHero.xp || 0) : null,
+                    attr: access ? Heroes.attr(hero.id, mongoHero) : null,
+                
                 }
-
-                if (access) {
-                    a['xp'] = mongoHero.xp || 0;
-                    a["level"] = Levels.levelFor(mongoHero.xp || 0);
-                    a["attr"] = Heroes.attr(hero.id, mongoHero);
-                }
-
-                return a;
             })
         }
         res.json({status: "Success", data});
