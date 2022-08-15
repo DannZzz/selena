@@ -44,7 +44,7 @@ export function createApp () {
                 const hero = Heroes.find(heroId);
                 const skin = Heroes.findSkin(heroId, mongoHero.skin)
                 return {
-                    avatarURL: hero.avatarURL(),
+                    avatarURL: hero.avatarURL(skin?.id || hero.id),
                     games: mongoHero.games || 0,
                     wins: mongoHero.wins || 0,
                     heroId: heroId as HeroId,
