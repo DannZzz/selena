@@ -28,6 +28,21 @@ export const PrimaryMoneyBuy: ReadonlyArray<{primaryAmount: number, inRub: numbe
     },
 ];
 
+export const PrimaryToSecondary: ReadonlyArray<ObjectType<"secondary" | "primary", number>> = [
+    {
+        primary: 50,
+        secondary: 500
+    },
+    {
+        primary: 150,
+        secondary: 1750
+    },
+    {
+        primary: 500,
+        secondary: 6000
+    }
+]
+
 export const PunishmentActionsSlots = {
     basic: 5,
     premium: 15
