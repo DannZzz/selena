@@ -9,7 +9,7 @@ import { Functions } from "../structures/Functions";
 import { UserKeysApi } from "../database/models/User";
 import { GuildKeysApi } from "../database/models/Guild";
 import path from "path";
-import { HeroId } from "../heroes/heroes-attr";
+import { HeroAttribute, HeroId } from "../heroes/heroes-attr";
 import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
 
@@ -29,11 +29,12 @@ export function createApp () {
     })
 
     app.get("/api/users/:id", async (req, res) => {
+        const access = await isAccessAllowed(req?.query?.accessToken as string);
         const id = req.params.id;
         if (!id) return res.json({status: "Error", message: "Parameter id not specified."});
         const game = await Database.get("Game").findOne("_id", id);
         if (!game) return res.json({status: "Error", message: "Profile not found."});
-        let data: {_id: string, nickname: string, xp: number, level: number, games: number, wins: number, heroes: Array<{heroId: HeroId, heroName: string, skin: string, avatarURL: string, games: number, wins: number}>} = {
+        let data: {_id: string, nickname: string, xp: number, level: number, games: number, wins: number, heroes: Array<{heroId: HeroId, heroName: string, skin: string, avatarURL: string, games: number, wins: number, attr?: HeroAttribute, xp?: number, level?: number}>} = {
             _id: game._id,
             nickname: game.nickname,
             xp: game.xp || 0,
@@ -43,7 +44,7 @@ export function createApp () {
             heroes: Object.entries(game.heroes || {}).map(([heroId, mongoHero]) => {
                 const hero = Heroes.find(heroId);
                 const skin = Heroes.findSkin(heroId, mongoHero.skin)
-                return {
+                const a = {
                     avatarURL: hero.avatarURL(skin?.id || hero.id),
                     games: mongoHero.games || 0,
                     wins: mongoHero.wins || 0,
@@ -51,6 +52,14 @@ export function createApp () {
                     heroName: hero.name,
                     skin: skin.name
                 }
+
+                if (access) {
+                    a['xp'] = mongoHero.xp || 0;
+                    a["level"] = Levels.levelFor(mongoHero.xp || 0);
+                    a["attr"] = Heroes.attr(hero.id, mongoHero);
+                }
+
+                return a;
             })
         }
         res.json({status: "Success", data});
@@ -64,4 +73,11 @@ export function createApp () {
     socketHandling(io);
     server.listen(PORT, () => console.log(`Server — http://localhost:${PORT}`));
     return {io, app};
+}
+
+
+async function isAccessAllowed (accessToken: string): Promise<boolean> {
+    if (!accessToken) return false;
+    const base = await Database.get("Settings").findOrCreate("_id", "main");
+    return (base.apiTokens || []).includes(accessToken);
 }
