@@ -1,4 +1,3 @@
-import { importFile } from "./handler";
 import path from "path";
 import fs from "fs";
 import { Hero, _heroCollection } from "../heroes/Heroes";
@@ -24,4 +23,8 @@ export default async function HeroHandler () {
         _heroCollection_Collection.set(collection.id, collection);
     }
     
+}
+
+async function importFile (path: string) {
+    return (await import(path))?.default;
 }
