@@ -10,7 +10,7 @@ export default new Hero ({
     isVip: false,
     emoji: "<:Malxaz:1006893417151868968>",
     isEventHero: false,
-    cost: new Cost("secondary", 5500),
+    cost: new Cost("secondary", 9200),
     skins: [
         {   
             id: "plamen-izobretatel",

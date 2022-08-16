@@ -5,7 +5,7 @@ import { HeroAttribute, HeroElement } from "../heroes-attr";
 export default new Hero ({
     id: 'Afina',
     attr: new HeroAttribute({hp: 2250, dmg: 115, dxt: 3}),
-    description: "Афина, милое лицо и безжалостные руки, убьют любого!.",
+    description: "Афина, милое лицо и безжалостные руки, убьют любого!",
     isAvailableInShop: true,
     isVip: false,
     emoji: "<:Afina:1005139116922511380>",
