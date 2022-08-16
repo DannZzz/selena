@@ -7,7 +7,6 @@ import { CLIENT_ID, DEV_SERVER, GLOBAL_COMMANDS, MONGO_URI, ONLY_DEV_SERVER, TOK
 import { Collection } from "discord.js";
 import { SlashCommand } from "../structures/SlashCommand";
 import { Event } from "../structures/Event";
-import { createApp } from "../web/app";
 import mongoose from "mongoose";
 import HandleCustomEvents from "./custom-event-handler";
 import { GiveawayHandler } from "./GiveawayHandler";
@@ -80,7 +79,6 @@ export async function HandleAll (client: Client) {
         HandleCustomEvents()
             
         mongoose.connect(MONGO_URI);
-        createApp();
 
         await client.login()
         console.log(`Slash Commands loaded: ${SlashCollection.size}`);
