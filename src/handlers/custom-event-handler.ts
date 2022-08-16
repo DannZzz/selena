@@ -12,8 +12,6 @@ import { Levels } from "../custom-modules/Level-xp";
 import { OnNewLevelAddingAttr } from "../docs/CommandSettings";
 import { HeroAttribute } from "../heroes/heroes-attr";
 
-const { validWarns, fetchMember } = Functions
-
 export default function HandleCustomEvents() {
     const Builder = new DiscordComponentBuilder();
     CustomEvent.on("warnCreate", async ({guild, mongoGuild}, punishment, channel) => {
@@ -21,7 +19,7 @@ export default function HandleCustomEvents() {
             const _mongo = await Database.get("Guild").findOrCreate("_id", guild.id);
             const actions = _mongo.punishmentActions;
             if (!actions || actions.length === 0) return;
-            const user_s = validWarns(_mongo.punishments).filter(p => p.targetId === punishment.targetId);
+            const user_s = Functions.validWarns(_mongo.punishments).filter(p => p.targetId === punishment.targetId);
 
             const eq = actions.find(pa => pa.amount === user_s.length);
             if (!eq) return;
