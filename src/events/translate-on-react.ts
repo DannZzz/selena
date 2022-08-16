@@ -15,17 +15,17 @@ export default new Event ({
         try {
             message = await reaction.message.fetch();
         } catch {console.log("cant fetch message to translate")}
-        if (!message || !message.content) return;
+        if (!message || (!message.content && !message?.embeds?.[0]?.description)) return;
         const locale = emoji.key.split("-")[1];
-        if (_cooldowns.has(`${message.content}$${locale}`)) return;
-        await translate(message.content, {to: checkAnothers(locale)}).then(async res => {
-            _cooldowns.add(`${message.content}$${locale}`)
+        if (_cooldowns.has(`${message.id}$${locale}`)) return;
+        await translate(message.content || message?.embeds?.[0]?.description, {to: checkAnothers(locale)}).then(async res => {
+            _cooldowns.add(`${message.id}$${locale}`)
             let user = null;
             try {
                 user = await _user?.fetch();
             } catch {}
             
-            setTimeout(() => _cooldowns.delete(`${message.content}$${locale}`), 15 * 1000);
+            setTimeout(() => _cooldowns.delete(`${message.id}$${locale}`), 15 * 1000);
             // .setTitle(`Перевод с :flag_${res.from.language.iso}: на :flag_${locale}:`)
             new DiscordComponentBuilder().createEmbed().setTitle(`Перевод на :flag_${locale}:`).setText(stripIndents`${res}`).setAuthor(message.author.username + " говорит..", message.author.avatarURL()).setUser(user as any).messageReply(message as any)
             
