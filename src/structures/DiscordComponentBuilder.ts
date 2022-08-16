@@ -160,20 +160,22 @@ class Embed {
     setUser(data: {avatarUrl: string, name: string}, type: "footer" | "author"): this;
     setUser(data: DiscordUser | GuildMember | {avatarUrl: string, name: string}, type: "footer" | "author" = "footer") {
         let name: string, avatarUrl: string;
-        if (data instanceof DiscordUser) {
-            name = data.username;
-            avatarUrl = data.displayAvatarURL();
-        } else if (data instanceof GuildMember) {
-            avatarUrl = data.displayAvatarURL();
-            name = data.user.username;
-        } else {
-            name = data.name;
-            avatarUrl = data.avatarUrl;
-        }
-        if (type === "author") {
-            this.setAuthor(name, avatarUrl);
-        } else {
-            this.setFooter(`Запросил(а) ${name}`, avatarUrl)
+        if (data) {
+            if (data instanceof DiscordUser) {
+                name = data.username;
+                avatarUrl = data.displayAvatarURL();
+            } else if (data instanceof GuildMember) {
+                avatarUrl = data.displayAvatarURL();
+                name = data.user.username;
+            } else {
+                name = data.name;
+                avatarUrl = data.avatarUrl;
+            }
+            if (type === "author") {
+                this.setAuthor(name, avatarUrl);
+            } else {
+                this.setFooter(`Запросил(а) ${name}`, avatarUrl)
+            }
         }
         return this;
     }
