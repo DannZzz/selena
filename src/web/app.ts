@@ -2,7 +2,7 @@ import express from "express";
 import http from "http";
 import bodyParser from "body-parser";
 import socketHandling from "./socketHandling";
-import { PORT } from "../config";
+import { MONGO_URI, PORT } from "../config";
 import { Io } from "../structures/Io";
 import Database from "../database/db";
 import { Functions } from "../structures/Functions";
@@ -12,8 +12,11 @@ import path from "path";
 import { HeroAttribute, HeroId } from "../heroes/heroes-attr";
 import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
+import mongoose from "mongoose";
 
-export function createApp () {
+mongoose.connect(MONGO_URI).then(() => createApp())
+
+function createApp () {
     const app = express();
 
     app.use(bodyParser.urlencoded({extended: false}));
