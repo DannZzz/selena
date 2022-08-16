@@ -1,7 +1,6 @@
 import { Util } from "client-discord";
 import { APIMessageComponentEmoji, Collection, CommandInteraction, Guild, GuildMember, NonThreadGuildBasedChannel, Role, Snowflake } from "discord.js";
 import moment from "moment";
-import { client } from "..";
 import { Levels } from "../custom-modules/Level-xp";
 import { MaxLevel, XpEmoji } from "../docs/CommandSettings";
 import { Hero, Heroes } from "../heroes/Heroes";
@@ -41,7 +40,7 @@ export class Functions {
             member = await interaction.guild.members.fetch(id);
             return member;
         } catch {
-            new DiscordComponentBuilder(client).createEmbed().setUser(interaction.user).setError("Участик сервера не найден.").interactionReply(interaction);
+            new DiscordComponentBuilder().createEmbed().setUser(interaction.user).setError("Участик сервера не найден.").interactionReply(interaction);
             return null;
         }
     }
