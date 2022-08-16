@@ -12,7 +12,8 @@ import { HeroAttribute, HeroId } from "../heroes/heroes-attr";
 import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
 import mongoose from "mongoose";
-
+import HeroHandler from "../handlers/hero-handler";
+HeroHandler();
 mongoose.connect(MONGO_URI).then(() => createApp())
 
 function createApp () {
