@@ -4,6 +4,7 @@ import { DiscordComponentBuilder } from "../structures/DiscordComponentBuilder";
 import { stripIndents } from "common-tags";
 import { Message, MessageReaction } from "discord.js";
 import Emoji from "node-emoji";
+import { Util } from "client-discord";
 
 const _cooldowns = new Set<string>();
 export default new Event ({
@@ -27,7 +28,7 @@ export default new Event ({
             
             setTimeout(() => _cooldowns.delete(`${message.id}$${locale}`), 15 * 1000);
             // .setTitle(`Перевод с :flag_${res.from.language.iso}: на :flag_${locale}:`)
-            new DiscordComponentBuilder().createEmbed().setTitle(`Перевод на :flag_${locale}:`).setText(stripIndents`${res}`).setAuthor(message.author.username + " говорит..", message.author.avatarURL()).setUser(user as any).messageReply(message as any)
+            new DiscordComponentBuilder().createEmbed().setTitle(`Перевод на :flag_${locale}:`).setText(stripIndents`> ${Util.shorten(res, 4080)}`).setAuthor(message.author.username + " говорит..", message.author.avatarURL()).setUser(user as any).messageReply(message as any)
             
         }).catch(() => {})
     }
