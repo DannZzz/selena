@@ -6,7 +6,6 @@ import { MONGO_URI, PORT } from "../config";
 import { Io } from "../structures/Io";
 import Database from "../database/db";
 import { Functions } from "../structures/Functions";
-import { UserKeysApi } from "../database/models/User";
 import { GuildKeysApi } from "../database/models/Guild";
 import path from "path";
 import { HeroAttribute, HeroId } from "../heroes/heroes-attr";
