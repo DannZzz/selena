@@ -12,7 +12,7 @@ export default new Event({
                 if (interaction.customId === "help-menu") {
                     await interaction.deferUpdate()
                     const category = interaction.values[0];
-                    const commands = SlashCollection.filter(c => c.category === category);
+                    const commands = SlashCollection.filter(c => c.category === category && !c.isDevOnly);
                     new DiscordComponentBuilder().createEmbed()
                         .setText(commands.map(c => `\`${c.data.name}\` - ${c.data.description}`).join("\n"))
                         .setTitle(SlashCommandCategoryEnum[category])

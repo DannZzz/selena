@@ -15,7 +15,7 @@ export default new SlashCommand ({
         const options: RestOrArray<SelectMenuOptionBuilder | SelectMenuComponentOptionData | APISelectMenuOption> = []
         
         for (let key in SlashCommandCategoryEnum) {
-            const cmds = commands.filter(c => c.category === key);
+            const cmds = commands.filter(c => c.category === key && !c.isDevOnly);
             builder.addField(`${SlashCommandCategoryEnum[key]}`, cmds.map(c => `\`${c.data.name}\``).join(", "));
             const splited = SlashCommandCategoryEnum[key].split(" ");
             options.push({label: splited[1], value: key, emoji: F.resolveEmoji(splited[0])});
