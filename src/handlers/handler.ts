@@ -95,7 +95,7 @@ export async function registerSlash (client: Client) {
     console.log("Started registering Slash Commands (/)");
     const rest = new REST({ version: '10' }).setToken(TOKEN);
 
-    if (ONLY_DEV_SERVER) {
+    if (ONLY_DEV_SERVER === "true") {
         if (DEV_SERVER) {
             // {body: [...DevCollection.values()].map(x => x.data.toJSON())}
             await rest.put(Routes.applicationGuildCommands(CLIENT_ID, DEV_SERVER), {body: [...SlashCollection.values(), ...MessageContextMenuCollection.values()].map(x => x.data.toJSON())})
