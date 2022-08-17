@@ -89,11 +89,11 @@ export default new SlashCommand({
                     const xp = UserXpAfterWin();
                     Builder.createEmbed()
                         .setTitle(`Приключения | Уровень ${advLevel}`)
-                        .setSuccess("Вы Выиграли.")
+                        .setSuccess("Вы выиграли.")
                         .setColor(Heroes.getSkinColor(skin))
                         .addField(`(Вы) ${hero.elements} ${hero} (\`${F.formatNumber(Levels.levelFor(mongoHero.xp))} lvl\`)`, `**${skin.name}**\n${Heroes.attrFrom(result.winner.attr)}`, true)
                         .addField(`${enemyHero.elements} ${enemyHero}`, `${Heroes.attrFrom(result.loser.attr)}`, true)
-                        .addField(`Награда`, F.andOr([`${XpEmoji} ${F.formatNumber(xp)}`, `${enemy.rewardString}`]))
+                        .addField(`Награда`, [`${XpEmoji} ${F.formatNumber(xp)}`, `${enemy.rewardString}`].join(", "))
                         .interactionFollowUp(interaction);
                     await Promise.all([
                         Database.addUserXp(interaction.user.id, xp, CustomEvent, interaction.channel),

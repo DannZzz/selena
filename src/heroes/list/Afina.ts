@@ -11,6 +11,7 @@ export default new Hero ({
     emoji: "<:Afina:1005139116922511380>",
     isEventHero: false,
     cost: new Cost("secondary", 5000),
+    elements: new HeroElement("fire", "blood"),
     skins: [
         {   
             id: "dar-nebes",
@@ -41,5 +42,4 @@ export default new Hero ({
             cost: new Cost("primary", 1599)
         }
     ],
-    elements: new HeroElement("fire", "blood")
 })

@@ -88,7 +88,7 @@ export const MaxNicknameLength: number = 40;
 
 export const HeroCostIfExists: number = 15;
 
-export const UserDatabaseOptions: Partial<User> = { packs: {startpack: 1} }
+export const UserDatabaseOptions: Partial<User> = { packs: {startpack: 1, big_chest: 1} }
 
 export const UserXpAfterWin = () => Util.random(25, 75);
 
