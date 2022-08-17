@@ -28,8 +28,9 @@ export default new SlashCommand ({
         const image = await profileImage(user);
   
         const att = new AttachmentBuilder(image, {name: "image.png"});
-        const _games = userData.games || 0;
-        const _wins = userData.wins || 0;
+        const resolved = F.resolveGames(userData.heroes);
+        const _games = resolved.games || 0;
+        const _wins = resolved.wins || 0;
         
         Builder.createEmbed()
             .setTitle("Никнейм: " + userData.nickname)

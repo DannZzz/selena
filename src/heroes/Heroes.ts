@@ -65,6 +65,15 @@ export class Heroes {
         return hero.skins.find(s => s.id.toLowerCase() === skin.toLowerCase()) || null
     }
 
+    static sort (): (typeof Heroes)['data'] {
+        let collection = new Collection();
+        for (let i in HeroNames) {
+            const hd = Heroes.find(i);
+            hd && collection.set(i, hd);
+        }
+        return collection as any;
+    }
+
     static getSkinColor (skin: HeroSkin) {
         return skin ? HeroRarityColor[skin.rarity] : HeroRarityColor["common"];
     }

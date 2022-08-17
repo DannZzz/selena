@@ -37,12 +37,19 @@ export default new SlashCommand ({
                 .editReply(interaction)
         } else if (cmd === "wins") {
             const data = await Database.get("Game").findMany({wins: {$gte: 0}});
-            const sorted = data.sort((a, b) => b.wins - a.wins).slice(0, 10);
+            const sorted = data.sort((a, b) => {
+                const br = F.resolveGames(b.heroes);
+                const ar = F.resolveGames(a.heroes);
+                return br.wins - ar.wins;
+            }).slice(0, 10);
 
             Builder.createEmbed()
-                .setTitle("Топ по количество побед")
+                .setTitle("Топ по количеству побед")
                 .setThumbnail(client.user.avatarURL())
-                .setText(stripIndents`${sorted.map((d, i) => `${i+1}. **${d.nickname}** — **${F.formatNumber(d.wins || 0)}** (${F.wr(d.games, d.wins)}) побед`).join("\n\n") || "Пока что пусто.."}`)
+                .setText(stripIndents`${sorted.map((d, i) => {
+                    const r = F.resolveGames(d.heroes);
+                    return `${i+1}. **${d.nickname}** — **${F.formatNumber(r.wins || 0)}** (${F.wr(r.games, r.wins)}) побед`
+                }).join("\n\n") || "Пока что пусто.."}`)
                 .editReply(interaction)
         } else if (cmd === "hero") {
             const heroName = options.getString("hero");
@@ -55,7 +62,7 @@ export default new SlashCommand ({
             }).slice(0, 10);
             const att = hd.avatarAttachment(sorted?.[0]?.heroes?.[hd.id]?.skin || hd.id);
             Builder.createEmbed()
-                .setTitle("Топ по количество побед за героя " + hd)
+                .setTitle("Топ по количеству побед за героя " + hd)
                 .setThumbnail(`attachment://${att.name}`)
                 .setText(stripIndents`${sorted.map((d, i) => `${i+1}. **${d.nickname}** — **${F.formatNumber(d.heroes?.[hd.id]?.wins || 0)}** (${F.wr(d.heroes?.[hd.id]?.games, d.heroes?.[hd.id]?.wins)}) побед`).join("\n\n") || "Пока что пусто.."}`)
                 .editReply(interaction, {files: [att]})

@@ -17,7 +17,7 @@ export default new Hero ({
         {   
             id: "heart-of-sea",
             name: "Сердце Моря",
-            bonus: {hp: 300},
+            bonus: {hp: 950, dmg: 20},
             cost: new Cost('primary', RaritySkinCost.epic),
             rarity: "epic"
         }

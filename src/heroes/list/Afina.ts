@@ -17,28 +17,28 @@ export default new Hero ({
         {   
             id: "dar-nebes",
             name: "Дар Небес",
-            bonus: {hp: 200, dxt: 5},
+            bonus: {hp: 300, dxt: 7},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "brave-heart",
             name: "Храброе сердце",
-            bonus: {hp: 350},
+            bonus: {hp: 850},
             cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "nebesniy-dojd",
             name: "Небесный Дождь",
-            bonus: {dmg: 30, hp: 200},
+            bonus: {dmg: 66, hp: 500},
             cost: new Cost("primary", RaritySkinCost.epic),
             rarity: "epic"
         },
         {
             id: "demonic-son",
             name: "Демонический сон",
-            bonus: {dmg: 45, dxt: 9, hp: 500},
+            bonus: {dmg: 100, dxt: 15, hp: 1000},
             rarity: "legendary",
             cost: new Cost("primary", RaritySkinCost.legendary)
         }

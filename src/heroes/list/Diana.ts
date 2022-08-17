@@ -12,7 +12,7 @@ export default new Hero ({
     emoji: "<:Diana:1008317367597670432>",
     isEventHero: false,
     cost: new Cost("secondary", 32000, new Cost("secondary", 28999)),
-    elements: new HeroElement("water", "water"),
+    elements: new HeroElement("water", "wind"),
     skins: [
         {   
             id: "poluvoda",
@@ -24,7 +24,7 @@ export default new Hero ({
         {
             id: "koroleva-vodi",
             name: "Королева Воды",
-            bonus: {dmg: 95},
+            bonus: {dmg: 95, hp: 1200},
             cost: new Cost("primary", RaritySkinCost.legendary),
             rarity: "legendary"
         }

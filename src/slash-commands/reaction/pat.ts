@@ -8,7 +8,7 @@ export default new SlashCommand({
     isRewardAllowed: true,
     data: new SlashBuilder()
         .setName("pat")
-        .setDescription("Поглядеть")
+        .setDescription("Погладить")
         .addUserOption(o => o
             .setName("user")
             .setDescription("Цель"))
@@ -16,6 +16,7 @@ export default new SlashCommand({
     async execute ({Builder, interaction, options}) {
         const user = options.getUser("user");
         const image = await ainasepics.get("pat");
+        
         Builder.createEmbed()
             .setColor(ColorObject.none)
             .setImage(image.url)

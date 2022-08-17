@@ -8,7 +8,7 @@ import Database from "../database/db";
 import { Functions } from "../structures/Functions";
 import { GuildKeysApi } from "../database/models/Guild";
 import path from "path";
-import { HeroAttribute, HeroId } from "../heroes/heroes-attr";
+import { HeroAttribute, HeroId, HeroSkinRarityNames } from "../heroes/heroes-attr";
 import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
 import mongoose from "mongoose";
@@ -37,13 +37,14 @@ function createApp () {
         if (!id) return res.json({status: "Error", message: "Parameter id not specified."});
         const game = await Database.get("Game").findOne("_id", id);
         if (!game) return res.json({status: "Error", message: "Profile not found."});
+        const resolved = Functions.resolveGames(game.heroes);
         let data: {_id: string, nickname: string, xp: number, level: number, games: number, wins: number, heroes: Array<{heroId: HeroId, heroName: string, skin: string, avatarURL: string, games: number, wins: number, attr?: HeroAttribute, xp?: number, level?: number}>} = {
             _id: game._id,
             nickname: game.nickname,
             xp: game.xp || 0,
             level: Levels.levelFor(game.xp || 0),
-            games: game.games || 0,
-            wins: game.wins || 0,
+            games: resolved.games || 0,
+            wins: resolved.wins || 0,
             heroes: Object.entries(game.heroes || {}).map(([heroId, mongoHero]) => {
                 const hero = Heroes.find(heroId);
                 const skin = Heroes.findSkin(heroId, mongoHero.skin)
@@ -66,6 +67,27 @@ function createApp () {
     })
     
     app.use("/api/hero/avatar/", express.static(path.join(__dirname, `../../hero-images/`)))
+
+    app.use("/api/heroes/all", (req, res) => {
+        const list = Heroes.sort();
+        res.json({status: "Success", data: list.map(h => {
+            return {
+                id: h.id,
+                name: `${h}`,
+                avatarURL: h.avatarURL(),
+                Attr: h.attr,
+                description: h.description,
+                elements: `${h.elements}`,
+                skins: h.skins.map(s => {
+                    return {
+                        name: s.name,
+                        avatarURL: h.avatarURL(s.id),
+                        rarity: HeroSkinRarityNames[s.rarity]
+                    }
+                })
+            }
+        })})
+    })
 
     // connecting
     const server = http.createServer(app);

@@ -17,14 +17,14 @@ export default new Hero ({
         {   
             id: "japan-samurai",
             name: "Японский Самурай",
-            bonus: {hp: 350, dxt: 2},
+            bonus: {hp: 550, dxt: 5},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "captain-okotachi",
             name: "Капитан Окотачи",
-            bonus: {dmg: 40, hp: 160},
+            bonus: {dmg: 40, hp: 500},
             cost: new Cost("primary", RaritySkinCost.elite),
             rarity: "epic"
         }

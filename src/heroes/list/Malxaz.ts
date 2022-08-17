@@ -16,7 +16,7 @@ export default new Hero ({
         {   
             id: "plamen-izobretatel",
             name: "Пламенный Изобретатель",
-            bonus: {dxt: 10},
+            bonus: {dxt: 20, hp: 300},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         }

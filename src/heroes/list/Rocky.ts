@@ -16,21 +16,21 @@ export default new Hero ({
         {   
             id: "dixanie-zimi",
             name: "Дыхание Зимы",
-            bonus: {hp: 150, dxt: 3, dmg: 20},
+            bonus: {hp: 200, dxt: 5, dmg: 20},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "totalizator",
             name: "Тотализатор",
-            bonus: {dxt: 20, dmg: 10},
+            bonus: {dxt: 20, dmg: 50},
             cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "izumrud-kamen",
             name: "Изумрудный Камень",
-            bonus: {dmg: 45, hp: 300},
+            bonus: {dmg: 65, hp: 550},
             rarity: "epic",
             cost: new Cost("primary", RaritySkinCost.epic)
         }

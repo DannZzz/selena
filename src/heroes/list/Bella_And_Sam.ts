@@ -16,14 +16,14 @@ export default new Hero ({
         {   
             id: "charodejka",
             name: "Чародейка",
-            bonus: {hp: 300, dxt: 2},
+            bonus: {hp: 400, dxt: 5},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "timely-mechta",
             name: "Временная Мечта",
-            bonus: {hp: 450, dmg: 35},
+            bonus: {hp: 950, dmg: 45},
             cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         }

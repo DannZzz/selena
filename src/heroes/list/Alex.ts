@@ -17,7 +17,7 @@ export default new Hero ({
         {   
             id: "night-biker",
             name: "Ночной Байкер",
-            bonus: {dmg: 30},
+            bonus: {dmg: 60},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         }

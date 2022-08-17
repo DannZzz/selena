@@ -16,28 +16,28 @@ export default new Hero ({
         {   
             id: "izbranica-mraka",
             name: "Избранница Мрака",
-            bonus: {hp: 150, dxt: 4, dmg: 10},
+            bonus: {hp: 250, dxt: 8, dmg: 20},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "otshelnica",
             name: "Отшельница",
-            bonus: {dxt: 10, dmg: 5},
+            bonus: {dxt: 15, dmg: 70},
             cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "chudo-sveta",
             name: "Чудо Света",
-            bonus: {dmg: 50, hp: 200},
+            bonus: {dmg: 55, hp: 500},
             rarity: "epic",
             cost: new Cost("primary", RaritySkinCost.epic)
         },
         {
             id: "golaya-magia",
             name: "Голая Магия",
-            bonus: {dmg: 30, dxt: 20, hp: 850},
+            bonus: {dmg: 100, dxt: 20, hp: 850},
             rarity: "legendary",
             cost: new Cost("primary", RaritySkinCost.legendary)
         }

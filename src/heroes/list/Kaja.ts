@@ -5,7 +5,7 @@ import { HeroAttribute, HeroElement } from "../heroes-attr";
 
 export default new Hero ({
     id: 'Kaja',
-    attr: new HeroAttribute({hp: 4500, dmg: 50, dxt: 5}),
+    attr: new HeroAttribute({hp: 4500, dmg: 75, dxt: 15}),
     description: "Кайя ещё был маленьким ребёнком пока его не украл Грифон. Время с Грифоном изменил Кайю, и вот какой он сейчас.",
     isAvailableInShop: true,
     isVip: false,
@@ -16,7 +16,7 @@ export default new Hero ({
         {   
             id: "fire-dragon",
             name: "Огненный Грифон",
-            bonus: {hp: 300},
+            bonus: {hp: 560},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         }

@@ -2,6 +2,7 @@ import { Util } from "client-discord";
 import { APIMessageComponentEmoji, Collection, CommandInteraction, Guild, GuildMember, NonThreadGuildBasedChannel, Role, Snowflake } from "discord.js";
 import moment from "moment";
 import { Levels } from "../custom-modules/Level-xp";
+import { Game } from "../database/models/Game";
 import { MaxLevel, XpEmoji } from "../docs/CommandSettings";
 import { Hero, Heroes } from "../heroes/Heroes";
 import { HeroResolvable } from "../heroes/heroes-attr";
@@ -32,6 +33,14 @@ export class Functions {
 
     static wr (games: number, wins: number): string {
         return (((wins || 0) / (games || 0) * 100) || 0).toFixed(1) + "%";
+    }
+
+    static resolveGames (heroes: Game['heroes']) {
+        return Object.entries(heroes || {})?.reduce((d, [heroId, mongo]) => {
+            d['games'] += mongo['games'] || 0;
+            d['wins'] += mongo['wins'] || 0;
+            return d;
+        }, {games: 0, wins: 0}) || {games: 0, wins: 0};
     }
 
     static async fetchMember (interaction: CommandInteraction, id: Snowflake): Promise<GuildMember> {

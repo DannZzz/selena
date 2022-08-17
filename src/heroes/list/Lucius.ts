@@ -5,7 +5,7 @@ import { HeroAttribute, HeroElement } from "../heroes-attr";
 
 export default new Hero ({
     id: "Lucius",
-    attr: new HeroAttribute({hp: 4250, dmg: 44, dxt: 9}),
+    attr: new HeroAttribute({hp: 4250, dmg: 64, dxt: 9}),
     description: "Позорная казнь или смерть с честью - судьба легионера.",
     isAvailableInShop: true,
     isVip: false,
@@ -17,21 +17,21 @@ export default new Hero ({
         {   
             id: "centurion",
             name: "Центурион",
-            bonus: {hp: 200, dmg: 10},
+            bonus: {hp: 400, dmg: 30},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "caesar",
             name: "Цезарь",
-            bonus: {dmg: 30, hp: 300},
+            bonus: {dmg: 45, hp: 630},
             cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "magic-change",
             name: "Магическое Превращение",
-            bonus: {hp: 600},
+            bonus: {hp: 900, dxt: 5},
             cost: new Cost("primary", RaritySkinCost.epic),
             rarity: "epic"
         },

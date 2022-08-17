@@ -72,6 +72,6 @@ export default function AdventureLevels (): ObjectType<number, AdventureEnemy> {
         27: new AdventureEnemy({id: "Malxaz", attr: new HeroAttribute({hp: 21050, dmg: 540, dxt: 11}), boss: false, reward: [new RandomMoney("secondary", () => 6900)]}),
         28: new AdventureEnemy({id: "Bella_And_Sam", attr: new HeroAttribute({hp: 20090, dmg: 500, dxt: 67}), boss: false, reward: [new RandomMoney("secondary", () => 7500)]}),
         29: new AdventureEnemy({id: "Rocky", attr: new HeroAttribute({hp: 28500, dmg: 310, dxt: 46}), boss: false, reward: [new RandomMoney("secondary", () => 8000)]}),
-        30: new AdventureEnemy({id: "Diana", attr: new HeroAttribute({hp: 3000, dmg: 1000, dxt: 100}), boss: true, packs: [{packId: "big_chest", amount: 5}], reward: [new RandomMoney("secondary", () => 10000), new RandomMoney("primary", () => 50)]}),
+        30: new AdventureEnemy({id: "Diana", attr: new HeroAttribute({hp: 30000, dmg: 1000, dxt: 100}), boss: true, packs: [{packId: "big_chest", amount: 5}], reward: [new RandomMoney("secondary", () => 10000), new RandomMoney("primary", () => 50)]}),
     }
 }
