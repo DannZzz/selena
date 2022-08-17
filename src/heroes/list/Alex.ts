@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,7 +18,7 @@ export default new Hero ({
             id: "night-biker",
             name: "Ночной Байкер",
             bonus: {dmg: 30},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         }
     ],

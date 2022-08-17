@@ -1,9 +1,16 @@
 import { Util } from "client-discord";
 import { EmojiResolvable } from "discord.js";
 import { User } from "../database/models/User";
-import { HeroAttribute, HeroAttributesEnum } from "../heroes/heroes-attr";
+import { HeroAttribute, HeroAttributesEnum, HeroSkinRarityNames } from "../heroes/heroes-attr";
 import { Currency, GuildCurrency } from "../structures/Currency";
 import { Cost, ObjectType } from "../structures/MainTypes";
+
+export const RaritySkinCost: ObjectType<keyof Omit<typeof HeroSkinRarityNames, "common">, number> = {
+    elite: 150,
+    special: 799,
+    epic: 1099,
+    legendary: 1599,
+}
 
 export const PrimaryMoneyBuy: ReadonlyArray<{primaryAmount: number, inRub: number}> = [
     {

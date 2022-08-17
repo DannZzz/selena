@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,21 +18,21 @@ export default new Hero ({
             id: "centurion",
             name: "Центурион",
             bonus: {hp: 200, dmg: 10},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "caesar",
             name: "Цезарь",
             bonus: {dmg: 30, hp: 300},
-            cost: new Cost("primary", 1059),
+            cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "magic-change",
             name: "Магическое Превращение",
             bonus: {hp: 600},
-            cost: new Cost("primary", 799),
+            cost: new Cost("primary", RaritySkinCost.epic),
             rarity: "epic"
         },
     ]

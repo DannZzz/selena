@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,21 +18,21 @@ export default new Hero ({
             id: "dar-nebes",
             name: "Дар Небес",
             bonus: {hp: 200, dxt: 5},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "brave-heart",
             name: "Храброе сердце",
             bonus: {hp: 350},
-            cost: new Cost("primary", 799),
+            cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "nebesniy-dojd",
             name: "Небесный Дождь",
             bonus: {dmg: 30, hp: 200},
-            cost: new Cost("primary", 1059),
+            cost: new Cost("primary", RaritySkinCost.epic),
             rarity: "epic"
         },
         {
@@ -39,7 +40,7 @@ export default new Hero ({
             name: "Демонический сон",
             bonus: {dmg: 45, dxt: 9, hp: 500},
             rarity: "legendary",
-            cost: new Cost("primary", 1599)
+            cost: new Cost("primary", RaritySkinCost.legendary)
         }
     ],
 })

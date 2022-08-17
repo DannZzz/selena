@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -16,7 +17,7 @@ export default new Hero ({
             id: "plamen-izobretatel",
             name: "Пламенный Изобретатель",
             bonus: {dxt: 10},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         }
     ],

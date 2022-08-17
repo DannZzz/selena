@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,14 +18,14 @@ export default new Hero ({
             id: "japan-samurai",
             name: "Японский Самурай",
             bonus: {hp: 350, dxt: 2},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "captain-okotachi",
             name: "Капитан Окотачи",
             bonus: {dmg: 40, hp: 160},
-            cost: new Cost("primary", 1059),
+            cost: new Cost("primary", RaritySkinCost.elite),
             rarity: "epic"
         }
     ],

@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -16,14 +17,14 @@ export default new Hero ({
             id: "izbranica-mraka",
             name: "Избранница Мрака",
             bonus: {hp: 150, dxt: 4, dmg: 10},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "otshelnica",
             name: "Отшельница",
             bonus: {dxt: 10, dmg: 5},
-            cost: new Cost("primary", 799),
+            cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
@@ -31,14 +32,14 @@ export default new Hero ({
             name: "Чудо Света",
             bonus: {dmg: 50, hp: 200},
             rarity: "epic",
-            cost: new Cost("primary", 1099)
+            cost: new Cost("primary", RaritySkinCost.epic)
         },
         {
             id: "golaya-magia",
             name: "Голая Магия",
             bonus: {dmg: 30, dxt: 20, hp: 850},
             rarity: "legendary",
-            cost: new Cost("primary", 1599)
+            cost: new Cost("primary", RaritySkinCost.legendary)
         }
     ],
     elements: new HeroElement("magic", "blood")

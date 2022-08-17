@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,14 +18,14 @@ export default new Hero ({
             id: "poluvoda",
             name: "Полувода",
             bonus: {hp: 1700},
-            cost: new Cost('primary', 799),
+            cost: new Cost('primary', RaritySkinCost.special),
             rarity: "special"
         },
         {
             id: "koroleva-vodi",
             name: "Королева Воды",
             bonus: {dmg: 95},
-            cost: new Cost("primary", 1599),
+            cost: new Cost("primary", RaritySkinCost.legendary),
             rarity: "legendary"
         }
     ],

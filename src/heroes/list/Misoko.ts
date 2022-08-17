@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -17,7 +18,7 @@ export default new Hero ({
             id: "heart-of-sea",
             name: "Сердце Моря",
             bonus: {hp: 300},
-            cost: new Cost('primary', 1099),
+            cost: new Cost('primary', RaritySkinCost.epic),
             rarity: "epic"
         }
     ],

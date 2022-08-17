@@ -1,3 +1,4 @@
+import { RaritySkinCost } from "../../docs/CommandSettings";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -16,14 +17,14 @@ export default new Hero ({
             id: "dixanie-zimi",
             name: "Дыхание Зимы",
             bonus: {hp: 150, dxt: 3, dmg: 20},
-            cost: new Cost('primary', 150),
+            cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
         },
         {
             id: "totalizator",
             name: "Тотализатор",
             bonus: {dxt: 20, dmg: 10},
-            cost: new Cost("primary", 799),
+            cost: new Cost("primary", RaritySkinCost.special),
             rarity: "special"
         },
         {
@@ -31,7 +32,7 @@ export default new Hero ({
             name: "Изумрудный Камень",
             bonus: {dmg: 45, hp: 300},
             rarity: "epic",
-            cost: new Cost("primary", 1099)
+            cost: new Cost("primary", RaritySkinCost.epic)
         }
     ],
     elements: new HeroElement("snow")
