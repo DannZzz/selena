@@ -106,7 +106,7 @@ export default class Database {
     static async addGame(userId: string, heroId: HeroId | string, win: boolean = false) {
         const thisUserGame = await Database.get("Game").findOrCreate("_id", userId);
         if (!thisUserGame.heroes[heroId]) return null;
-        await Database.get("Game").updateOne({_id: userId}, {$inc: {games: 1, wins: win ? 1 : 0, [`heroes.${heroId}.games`]: 1, [`heroes.${heroId}.wins`]: win ? 1 : 0}})
+        await Database.get("Game").updateOne({_id: userId}, {$inc: { [`heroes.${heroId}.games`]: 1, [`heroes.${heroId}.wins`]: win ? 1 : 0}})
 
     }
 

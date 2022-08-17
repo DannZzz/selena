@@ -1,6 +1,6 @@
 import { stripIndents } from "common-tags";
 import { AttachmentBuilder, InteractionType } from "discord.js";
-import { SUPPORT_SERVER_LINK } from "../config";
+import { DonationAlertsLink, SUPPORT_SERVER_LINK } from "../config";
 import { SlashCollection } from "../handlers/handler";
 import { DiscordComponentBuilder } from "../structures/DiscordComponentBuilder";
 import { Event } from "../structures/Event";
@@ -20,6 +20,8 @@ export default new Event({
                         А в поле сообщение номер предмета (указан выше), с \`#\` (например: \`#4\`).
                         Если всё указано верно, получите кристаллы мгновенно!
                         А если не получили, обратитесь к [нам](${SUPPORT_SERVER_LINK}).
+
+                        **[Ссылка на Донат](${DonationAlertsLink})**
                         `)
                         .setImage(`attachment://${att.name}`)
                         .setTitle("Покупка Кристаллов")
