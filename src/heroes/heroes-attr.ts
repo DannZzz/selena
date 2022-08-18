@@ -75,7 +75,8 @@ export enum HeroSkinRarityNames {
     elite = "Элитный",
     special = "Специальный",
     epic = "Эпический",
-    legendary = "Легендарный"
+    legendary = "Легендарный",
+    egyptian = "𐌄Ᏽ𐌙𐌐𐌕𐌉𐌀𐌍"
 }
 
 export type HeroSkinRarity = keyof typeof HeroSkinRarityNames;
@@ -86,6 +87,7 @@ export const HeroRarityColor: ObjectType<HeroSkinRarity, ColorResolvable> = {
     epic: "Purple",
     special: "Blurple",
     legendary: "Yellow",
+    egyptian: "Gold"
 }
 
 export enum HeroElementsNames {

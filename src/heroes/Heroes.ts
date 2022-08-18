@@ -202,4 +202,5 @@ export interface HeroSkin {
     rarity: HeroSkinRarity
     cost: Cost
     id: string
+    availableUntil?: Date
 }

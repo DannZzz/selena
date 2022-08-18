@@ -1,4 +1,5 @@
 import { RaritySkinCost } from "../../docs/CommandSettings";
+import { SkinLimits } from "../../docs/limits";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -27,6 +28,14 @@ export default new Hero ({
             bonus: {dmg: 95, hp: 1200},
             cost: new Cost("primary", RaritySkinCost.legendary),
             rarity: "legendary"
+        },
+        {
+            id: "cleopatra",
+            name: "Клеопатра",
+            bonus: {dmg: 100},
+            cost: new Cost('primary', RaritySkinCost.egyptian),
+            rarity: "egyptian",
+            availableUntil: SkinLimits.egyptian
         }
     ],
 })

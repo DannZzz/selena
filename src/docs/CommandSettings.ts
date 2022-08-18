@@ -5,11 +5,12 @@ import { HeroAttribute, HeroAttributesEnum, HeroSkinRarityNames } from "../heroe
 import { Currency, GuildCurrency } from "../structures/Currency";
 import { Cost, ObjectType } from "../structures/MainTypes";
 
-export const RaritySkinCost: ObjectType<keyof Omit<typeof HeroSkinRarityNames, "common">, number> = {
+export const RaritySkinCost: ObjectType<keyof Omit<typeof HeroSkinRarityNames, "common">, number, true> = {
     elite: 150,
     special: 799,
     epic: 1099,
     legendary: 1599,
+    egyptian: 599
 }
 
 export const PrimaryMoneyBuy: ReadonlyArray<{primaryAmount: number, inRub: number}> = [

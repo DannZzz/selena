@@ -114,7 +114,10 @@ export default new SlashCommand({
                         label = "Облик используется"
                         buyDis = true
                     } else if (!haveHero.skinsHave.includes(skin)) {
-                        if (Heroes.findSkin(heroId, skin).cost.type) {
+                        if (Heroes.findSkin(heroId, skin).availableUntil && !F.isLimited(Heroes.findSkin(heroId, skin).availableUntil)) {
+                            buyDis = true
+                            label = "Недоступно"
+                        } else if (Heroes.findSkin(heroId, skin).cost.type) {
                             label = "Купить"
                         } else {
                             label = `${Heroes.findSkin(heroId, skin).cost}`
@@ -172,15 +175,18 @@ export default new SlashCommand({
                             Builder.createEmbed().setText(resp).setUser(i.user).interactionFollowUp(i);
                         }
                     });
+                    const b =  Builder.createEmbed()
+                        .setImage(`attachment://${skinAtt.name}`)
+                        .setAuthor(`Герой: ${hero}`)
+                        .setTitle(`${HeroSkinRarityNames[skin.rarity]} Облик: ${skin.name}`)
+                        .setColor(Heroes.getSkinColor(skin))
+                        .addField("Бонус", `${Object.entries(skin.bonus).map(([key, number]) => `+ ${HeroAttributesEnum[key]} ${F.formatNumber(number)}`).join("\n")}`)
+                        .addField("Цена", `${skin.cost}`);
+
+                    if (skin.availableUntil) b.addField("Временный облик", `${F.isLimited(skin.availableUntil) ? `Закончится ${F.moment(skin.availableUntil).fromNow()}` : "Закончено"}`)
+                    
                     embeds.push(
-                        Builder.createEmbed()
-                            .setImage(`attachment://${skinAtt.name}`)
-                            .setAuthor(`Герой: ${hero}`)
-                            .setTitle(`${HeroSkinRarityNames[skin.rarity]} Облик: ${skin.name}`)
-                            .setColor(Heroes.getSkinColor(skin))
-                            .addField("Бонус", `${Object.entries(skin.bonus).map(([key, number]) => `+ ${HeroAttributesEnum[key]} ${F.formatNumber(number)}`).join("\n")}`)
-                            .addField("Цена", `${skin.cost}`)
-                            .toEmbedBuilder()
+                       b.toEmbedBuilder()
                     )
                 }
 

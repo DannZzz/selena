@@ -6,7 +6,7 @@ export const _heroCollection_Collection = new Collection<HeroCollectionId, HeroC
 
 export enum HeroCollectionNames {
     startkit = "Начальные герои",
-    lovekit = "Коллекция пар"
+    lovekit = "Коллекция пар",
 }
 
 export type HeroCollectionId = keyof typeof HeroCollectionNames;
