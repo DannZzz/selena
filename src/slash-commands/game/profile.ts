@@ -6,6 +6,7 @@ import { AttachmentBuilder } from "discord.js";
 import profileImage from "../../custom-modules/profileImage";
 import { Levels } from "../../custom-modules/Level-xp";
 import { HeroAttributesEnum } from "../../heroes/heroes-attr";
+import { Badge } from "../../custom-modules/Badge";
 
 export default new SlashCommand ({
     id: "profile",
@@ -36,9 +37,10 @@ export default new SlashCommand ({
             .setTitle("Никнейм: " + userData.nickname)
             .setImage("attachment://image.png")
             .setText(stripIndents`
+                **Ранг:** ${[Badge.rankFor(Levels.levelFor(userData.xp)), ...(await Badge.fetchUserBadges(user.id))].filter(x => x).join(" ")}
                 **Всего героев:** ${F.formatNumber(Object.keys(userData.heroes).length)}
                 **Всего обликов:** ${F.formatNumber(resolved.skins)}
-                **Уровень:** ${F.levelFormat(userData.xp || 0)}
+                **Уровень:** ${F.levelFormat(userData.xp)}
                 **Всего игр:** ${F.formatNumber(_games)}
                 **Всего побед:** ${F.formatNumber(_wins)} (${F.wr(_games, _wins)})
                 **Приключения:** ${F.formatNumber(userData.adventures + 1)}

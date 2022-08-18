@@ -48,7 +48,7 @@ export enum SlashCommandIdEnum {
     "giveaway",
     "messages-top",
     "spank",
-    "hero-info",
+    "hero",
     "change-money",
     "my-balance",
     "my-heroes",
@@ -64,6 +64,7 @@ export enum SlashCommandIdEnum {
     "crystals",
     "top",
     "change-nickname",
+    "rank"
 }
 
 export enum SlashCommandCategoryEnum {

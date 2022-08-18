@@ -8,7 +8,7 @@ export class Levels {
         const f = Functions;
         let lvl = 1;
         for (let i in this.levels) {
-            if (this.levels[i] > xp) {
+            if (this.levels[i] > xp || 0) {
                 lvl = +i - 1
                 break;
             };

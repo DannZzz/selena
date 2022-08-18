@@ -1,4 +1,6 @@
 import { stripIndents } from "common-tags";
+import { Badge } from "../../custom-modules/Badge";
+import { Levels } from "../../custom-modules/Level-xp";
 import { SlashBuilder, SlashCommand } from "../../structures/SlashCommand";
 
 export default new SlashCommand ({
@@ -13,7 +15,10 @@ export default new SlashCommand ({
             .setDescription("Топ по xp"))
         .addSubcommand(s => s
             .setName("wins")
-            .setDescription("Топ по побед"))
+            .setDescription("Топ по количеству побед"))
+        .addSubcommand(s => s
+                .setName("games")
+                .setDescription("Топ по количеству игр"))
         .addSubcommand(s => s
             .setName("hero")
             .setDescription("Топ по выигранных боёв за героя")
@@ -32,8 +37,8 @@ export default new SlashCommand ({
 
             Builder.createEmbed()
                 .setTitle("Топ по XP")
-                .setThumbnail(client.user.avatarURL())
-                .setText(stripIndents`${sorted.map((d, i) => `${i+1}. **${d.nickname}** — **${F.levelFormat(d.xp)}**`).join("\n\n") || "Пока что пусто.."}`)
+                .setThumbnail(F.resolveEmojiToLink(Badge.emojis.mostxp).link)
+                .setText(stripIndents`**Топ 1 — ${Badge.emojis.mostxp}**\n\n${sorted.map((d, i) => `${i+1}. **${Badge.rankFor(Levels.levelFor(d.xp)) ? Badge.rankFor(Levels.levelFor(d.xp)) + " " : ""}${d.nickname}** — **${F.levelFormat(d.xp)}**`).join("\n\n") || "Пока что пусто.."}`)
                 .editReply(interaction)
         } else if (cmd === "wins") {
             const data = await Database.get("Game").findMany({wins: {$gte: 0}});
@@ -45,10 +50,26 @@ export default new SlashCommand ({
 
             Builder.createEmbed()
                 .setTitle("Топ по количеству побед")
-                .setThumbnail(client.user.avatarURL())
-                .setText(stripIndents`${sorted.map((d, i) => {
+                .setThumbnail(F.resolveEmojiToLink(Badge.emojis.mostwins).link)
+                .setText(stripIndents`**Топ 1 — ${Badge.emojis.mostwins}**\n\n${sorted.map((d, i) => {
                     const r = F.resolveGames(d.heroes);
-                    return `${i+1}. **${d.nickname}** — **${F.formatNumber(r.wins || 0)}** (${F.wr(r.games, r.wins)}) побед`
+                    return `${i+1}. **${Badge.rankFor(Levels.levelFor(d.xp)) ? Badge.rankFor(Levels.levelFor(d.xp)) + " " : ""}${d.nickname}** — **${F.formatNumber(r.games || 0)}** игр | **${F.formatNumber(r.wins || 0)}** (${F.wr(r.games, r.wins)}) побед`
+                }).join("\n\n") || "Пока что пусто.."}`)
+                .editReply(interaction)
+        } else if (cmd === "games") {
+            const data = await Database.get("Game").findMany({wins: {$gte: 0}});
+            const sorted = data.sort((a, b) => {
+                const br = F.resolveGames(b.heroes);
+                const ar = F.resolveGames(a.heroes);
+                return br.games - ar.games;
+            }).slice(0, 10);
+
+            Builder.createEmbed()
+                .setTitle("Топ по количеству игр")
+                .setThumbnail(F.resolveEmojiToLink(Badge.emojis.mostgames).link)
+                .setText(stripIndents`**Топ 1 — ${Badge.emojis.mostgames}**\n\n${sorted.map((d, i) => {
+                    const r = F.resolveGames(d.heroes);
+                    return `${i+1}. **${Badge.rankFor(Levels.levelFor(d.xp)) ? Badge.rankFor(Levels.levelFor(d.xp)) + " " : ""}${d.nickname}** — **${F.formatNumber(r.games || 0)}** игр | **${F.formatNumber(r.wins || 0)}** (${F.wr(r.games, r.wins)}) побед`
                 }).join("\n\n") || "Пока что пусто.."}`)
                 .editReply(interaction)
         } else if (cmd === "hero") {
@@ -64,7 +85,7 @@ export default new SlashCommand ({
             Builder.createEmbed()
                 .setTitle("Топ по количеству побед за героя " + hd)
                 .setThumbnail(`attachment://${att.name}`)
-                .setText(stripIndents`${sorted.map((d, i) => `${i+1}. **${d.nickname}** — **${F.formatNumber(d.heroes?.[hd.id]?.wins || 0)}** (${F.wr(d.heroes?.[hd.id]?.games, d.heroes?.[hd.id]?.wins)}) побед`).join("\n\n") || "Пока что пусто.."}`)
+                .setText(stripIndents`${sorted.map((d, i) => `${i+1}. **${Badge.rankFor(Levels.levelFor(d.xp)) ? Badge.rankFor(Levels.levelFor(d.xp)) + " " : ""}${d.nickname}** — **${F.formatNumber(d.heroes?.[hd.id]?.games || 0)}** игр | **${F.formatNumber(d.heroes?.[hd.id]?.wins || 0)}** (${F.wr(d.heroes?.[hd.id]?.games, d.heroes?.[hd.id]?.wins)}) побед`).join("\n\n") || "Пока что пусто.."}`)
                 .editReply(interaction, {files: [att]})
         }
     }

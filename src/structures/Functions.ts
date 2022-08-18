@@ -124,6 +124,14 @@ export class Functions {
         m.locale(locale || "ru");
         return m;
     }
+
+    static resolveEmojiToLink (emoji: string) {
+        const id = emoji.split(":")[2].replace(">", "");
+        return {
+            id,
+            link: `https://cdn.discordapp.com/emojis/${id}.webp?size=2048&quality=lossless`
+        }
+    }
 }
 
 interface fetchData {

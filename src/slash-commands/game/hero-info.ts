@@ -10,10 +10,10 @@ import { CustomEvent } from "../../structures/CustomEvent";
 import { Levels } from "../../custom-modules/Level-xp";
 
 export default new SlashCommand({
-    id: "hero-info",
+    id: "hero",
     category: "Game",
     data: new SlashBuilder()
-        .setName("hero-info")
+        .setName("hero")
         .setDescription("Открыть информацию о герое")
         .addStringOption(o => o
             .setName("name")
