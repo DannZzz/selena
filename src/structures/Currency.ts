@@ -20,6 +20,10 @@ export type GuildCurrency = typeof Currency.types.guild;
 export type MoneyObject = ObjectType<keyof typeof Currency['types']['user'], number>;
 
 export class Currency {
+    static list (type: keyof (typeof Currency)['types']) {
+        return Object.values(this.types[type]);
+    }
+    
     static types: {
         guild: {
             secondary: Money

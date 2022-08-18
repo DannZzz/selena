@@ -1,5 +1,5 @@
 import { Util } from "client-discord";
-import { APIMessageComponentEmoji, Collection, CommandInteraction, Guild, GuildMember, NonThreadGuildBasedChannel, Role, Snowflake } from "discord.js";
+import { APIMessageComponentEmoji, Collection, CommandInteraction, EmojiResolvable, Guild, GuildMember, NonThreadGuildBasedChannel, Role, Snowflake } from "discord.js";
 import moment from "moment";
 import { Levels } from "../custom-modules/Level-xp";
 import { Game } from "../database/models/Game";
@@ -125,8 +125,8 @@ export class Functions {
         return m;
     }
 
-    static resolveEmojiToLink (emoji: string) {
-        const id = emoji.split(":")[2].replace(">", "");
+    static resolveEmojiToLink (emoji: EmojiResolvable) {
+        const id = (emoji as string).split(":")[2].replace(">", "");
         return {
             id,
             link: `https://cdn.discordapp.com/emojis/${id}.webp?size=2048&quality=lossless`

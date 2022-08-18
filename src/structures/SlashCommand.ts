@@ -64,7 +64,8 @@ export enum SlashCommandIdEnum {
     "crystals",
     "top",
     "change-nickname",
-    "rank"
+    "rank",
+    "pack-info",
 }
 
 export enum SlashCommandCategoryEnum {
