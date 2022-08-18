@@ -39,7 +39,7 @@ export class Functions {
         return Object.entries(heroes || {})?.reduce((d, [heroId, mongo]) => {
             d['games'] += mongo['games'] || 0;
             d['wins'] += mongo['wins'] || 0;
-            d['skins'] += (mongo?.['skinsHave']?.length || 0)
+            d['skins'] += (((mongo?.['skinsHave'] || []).filter(s => s !== heroId))?.length || 0)
             return d;
         }, {games: 0, wins: 0, skins: 0}) || {games: 0, wins: 0, skins: 0};
     }
