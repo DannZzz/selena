@@ -5,7 +5,7 @@ import { HeroAttribute, HeroElement } from "../heroes-attr";
 
 export default new Hero ({
     id: 'Rocky',
-    attr: new HeroAttribute({hp: 20000, dmg: 5, dxt: 3}),
+    attr: new HeroAttribute({hp: 18500, dmg: 5, dxt: 3}),
     description: "Где-то на севере обрушились камни, и вдруг оживили..\nЭто был Рокки..\nНо ему не понравилось белый снег, и он решил начать новое путешествие!",
     isAvailableInShop: true,
     isVip: false,
