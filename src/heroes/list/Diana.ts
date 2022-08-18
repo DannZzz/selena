@@ -12,7 +12,7 @@ export default new Hero ({
     isVip: false,
     emoji: "<:Diana:1008317367597670432>",
     isEventHero: false,
-    cost: new Cost("secondary", 32000, new Cost("secondary", 28999)),
+    cost: new Cost("primary", 899),
     elements: new HeroElement("water", "wind"),
     skins: [
         {   

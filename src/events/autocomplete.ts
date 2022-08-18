@@ -4,7 +4,7 @@ import Database from "../database/db";
 import { SlashCollection } from "../handlers/handler";
 import { HeroNames } from "../heroes/hero-names";
 import { Heroes } from "../heroes/Heroes";
-import { Packs } from "../heroes/Packs";
+import { PackNames, Packs } from "../heroes/Packs";
 import { Event } from "../structures/Event";
 import { Functions } from "../structures/Functions";
 
@@ -35,6 +35,9 @@ export default new Event ({
             send(interaction, Object.entries(packs).filter(([id, [number, pack]]) => pack.name.toLowerCase().includes(focusedValue.toLowerCase())).map(([id, [number, pack]]) => {
                 return {name: `${pack.name} - ${Functions.formatNumber(number)}`, value: pack.name}
             }))
+        } else if (command.autocomplete === "all-packs") {
+            const filtered = Object.values(PackNames).filter(cmd => cmd.toLowerCase().includes(focusedValue.toLowerCase()));
+            send(interaction, filtered)
         }
     }
 })
