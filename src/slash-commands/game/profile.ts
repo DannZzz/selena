@@ -37,6 +37,7 @@ export default new SlashCommand ({
             .setImage("attachment://image.png")
             .setText(stripIndents`
                 **Всего героев:** ${F.formatNumber(Object.keys(userData.heroes).length)}
+                **Всего обликов:** ${F.formatNumber(resolved.skins)}
                 **Уровень:** ${F.levelFormat(userData.xp || 0)}
                 **Всего игр:** ${F.formatNumber(_games)}
                 **Всего побед:** ${F.formatNumber(_wins)} (${F.wr(_games, _wins)})
