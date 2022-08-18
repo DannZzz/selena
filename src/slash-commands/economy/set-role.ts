@@ -34,6 +34,6 @@ export default new SlashCommand ({
 
         await Database.get("Guild").updateOne({_id: interaction.guildId}, {$set: {roleShop: [{roleId: role.id, cost}, ...shop]}});
 
-        Builder.createEmbed().setUser(interaction.user).setSuccess(`Роль **${role.name}** добавлена в магазин.`).addField(`Цена`, F.toMoneyString(cost, "guild", "secondary")).interactionReply(interaction);
+        Builder.createEmbed().setUser(interaction.user).setSuccess(`Роль **${role.name}** добавлена в магазин.`).addField(`Цена`, F.toMoneyString(cost, "user", "secondary")).interactionReply(interaction);
     }
 })
