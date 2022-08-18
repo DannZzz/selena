@@ -5,7 +5,8 @@ import { HeroList, HeroResolvable } from "./heroes-attr";
 export const _heroCollection_Collection = new Collection<HeroCollectionId, HeroCollection>()
 
 export enum HeroCollectionNames {
-    startkit = "Начальные герои"
+    startkit = "Начальные герои",
+    lovekit = "Коллекция пар"
 }
 
 export type HeroCollectionId = keyof typeof HeroCollectionNames;

@@ -73,5 +73,11 @@ export default function AdventureLevels (): ObjectType<number, AdventureEnemy> {
         28: new AdventureEnemy({id: "Bella_And_Sam", attr: new HeroAttribute({hp: 20090, dmg: 500, dxt: 67}), boss: false, reward: [new RandomMoney("secondary", () => 7500)]}),
         29: new AdventureEnemy({id: "Rocky", attr: new HeroAttribute({hp: 28500, dmg: 310, dxt: 46}), boss: false, reward: [new RandomMoney("secondary", () => 8000)]}),
         30: new AdventureEnemy({id: "Diana", attr: new HeroAttribute({hp: 30000, dmg: 1000, dxt: 100}), boss: true, packs: [{packId: "big_chest", amount: 5}], reward: [new RandomMoney("secondary", () => 10000), new RandomMoney("primary", () => 50)]}),
+        31: new AdventureEnemy({id: "Manor", attr: new HeroAttribute({hp: 33500, dmg: 780, dxt: 77}), boss: false, reward: [new RandomMoney("secondary", () => 9000)]}),
+        32: new AdventureEnemy({id: "Rocky", attr: new HeroAttribute({hp: 41500, dmg: 700, dxt: 33}), boss: false, reward: [new RandomMoney("secondary", () => 10500)]}),
+        33: new AdventureEnemy({id: "Lucius", attr: new HeroAttribute({hp: 36700, dmg: 940, dxt: 78}), boss: false, reward: [new RandomMoney("secondary", () => 12000)]}),
+        34: new AdventureEnemy({id: "Omar", attr: new HeroAttribute({hp: 43500, dmg: 1200, dxt: 99}), boss: false, reward: [new RandomMoney("secondary", () => 13500)]}),
+        35: new AdventureEnemy({id: "Manor", attr: new HeroAttribute({hp: 50500, dmg: 1550, dxt: 170}), boss: true, packs: [{packId: "love_pack", amount: 1}], reward: [new RandomMoney("primary", () => 200)]}),
+        
     }
 }

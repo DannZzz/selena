@@ -73,11 +73,11 @@ export const XpEmoji: EmojiResolvable = "<:xp:1005433998618660905>";
 
 export const BonusBuying: ObjectType<keyof typeof HeroAttributesEnum, {amount: number, cost: Cost}> = {
     dmg: {
-        amount: 5,
+        amount: 3,
         cost: new Cost("primary", 5)
     },
     hp: {
-        amount: 150,
+        amount: 120,
         cost: new Cost("primary", 5)
     },
     dxt: {

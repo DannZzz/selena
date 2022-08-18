@@ -18,7 +18,7 @@ export class Heroes {
         const heroLevel = Levels.levelFor(data.xp);
         const hero = this.find(id);
         for(let k in _data) {
-            if (hero.attr[k]) _data[k] +=hero.attr[k] / 10 * (heroLevel - 1);
+            if (hero.attr[k]) _data[k] += hero.attr[k] / 10 * (heroLevel - 1);
         }
         const skinData = this.findSkin(id as any, data.skin);
         return new HeroAttribute(_data, skinData?.bonus, hero.attr);

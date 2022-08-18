@@ -8,7 +8,8 @@ export const _packCollection = new Collection<PackId, Pack>()
 export enum PackNames {
     startpack = "Пак начальных героев",
     small_chest = "Маленький сундук сокровищ",
-    big_chest = "Большой сундук сокровищ"
+    big_chest = "Большой сундук сокровищ",
+    love_pack = "Пак Любви"
 }
 
 export type PackId = keyof typeof PackNames;
