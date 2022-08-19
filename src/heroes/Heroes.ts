@@ -1,7 +1,9 @@
+import { Util } from "client-discord";
 import { AttachmentBuilder, Collection } from "discord.js";
 import { WebName } from "../config";
 import { Levels } from "../custom-modules/Level-xp";
 import { MongoHero } from "../database/models/Game";
+import { DxtDoubleAttackChance } from "../docs/CommandSettings";
 import { CurrencyType, UserCurrency } from "../structures/Currency";
 import { Functions } from "../structures/Functions";
 import { Cost, ObjectType } from "../structures/MainTypes";
@@ -89,14 +91,14 @@ export class Heroes {
         f2.attr.dmg *= els.p2;
         if (f1.attr?.dxt >= f2.attr?.dxt) {
             while (true) {
-                f2.attr.hp -= f1.attr.dmg;
+                f2.attr.hp -= f1.attr.dmg * (Util.random(1, 100) <= DxtDoubleAttackChance ? 2 : 1);
                 if (f2.attr.hp <= 0) break;
                 f1.attr.hp -= f2.attr.dmg;
                 if (f1.attr.hp <= 0) break;
             }
         } else {
             while (true) {
-                f1.attr.hp -= f2.attr.dmg;
+                f1.attr.hp -= f2.attr.dmg * (Util.random(1, 100) <= DxtDoubleAttackChance ? 2 : 1);
                 if (f1.attr.hp <= 0) break;
                 f2.attr.hp -= f1.attr.dmg;
                 if (f2.attr.hp <= 0) break;

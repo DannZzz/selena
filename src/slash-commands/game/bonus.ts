@@ -3,7 +3,7 @@ import { Pagination } from "../../structures/Pagination";
 import { stripIndents } from "common-tags";
 import { HeroAttribute, HeroAttributesEnum, HeroElementsContrs, HeroElementsNames } from "../../heroes/heroes-attr";
 import { Pack, Packs } from "../../heroes/Packs";
-import { BonusBuying, HeroCostIfExists } from "../../docs/CommandSettings";
+import { BonusBuying, DxtDoubleAttackChance, HeroCostIfExists } from "../../docs/CommandSettings";
 import { Currency } from "../../structures/Currency";
 import { ObjectType } from "../../structures/MainTypes";
 import { ActionRowBuilder, ButtonBuilder } from "@discordjs/builders";
@@ -88,7 +88,12 @@ export default new SlashCommand({
             let data = attrs()
             const msg = await Builder.createEmbed()
                 .setTitle("Покупка бонусов")
-                .setText(data.texts.join("\n"))
+                .setText(stripIndents`
+                ${HeroAttributesEnum.hp} - Увеличивает ОЗ героя
+                ${HeroAttributesEnum.dmg} - Увеличивает атаку героя
+                ${HeroAttributesEnum.dxt} - Увеличивает ловкость героя (Если ловкость героя больше, чем у противника, ему отдается первый удар и получает ${DxtDoubleAttackChance}% шанс нанести двойной урон перед каждой атакой.)
+                
+                ${data.texts.join("\n")}`)
                 .setThumbnail(client.user.avatarURL())
                 .interactionReply(interaction, {components: [data.buttons], fetchReply: true}) as any as Message;
 

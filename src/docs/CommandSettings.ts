@@ -1,5 +1,6 @@
 import { Util } from "client-discord";
 import { EmojiResolvable } from "discord.js";
+import { processOr } from "../config";
 import { User } from "../database/models/User";
 import { HeroAttribute, HeroAttributesEnum, HeroSkinRarityNames } from "../heroes/heroes-attr";
 import { Currency, GuildCurrency } from "../structures/Currency";
@@ -55,6 +56,8 @@ export const PunishmentActionsSlots = {
     basic: 5,
     premium: 15
 }
+
+export const DxtDoubleAttackChance: number = +processOr("DxtDoubleAttackChance", "20");
 
 export const HelpBackgroundImage = "https://i.ibb.co/kcGvLjp/a-79e8a26777db5f5c6f077b3a02a7ac8b.gif";
 
