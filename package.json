@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/jquery": "^3.5.14",
-    "ainasepics": "^3.0.2",
+    "anime-images-api": "^2.0.0",
     "base-64": "^1.0.0",
     "body-parser": "^1.20.0",
     "canvas": "^2.9.3",
