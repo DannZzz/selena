@@ -3,12 +3,12 @@ import { ColorObject } from "../../config";
 import { AnimeGif } from "../../structures/Anime-gif";
 
 export default new SlashCommand({
-    id: "hug",
+    id: "cuddle",
     category: "Reaction",
     isRewardAllowed: true,
     data: new SlashBuilder()
-        .setName("hug")
-        .setDescription("Обнять")
+        .setName("cuddle")
+        .setDescription("Прижмать")
         .addUserOption(o => o
             .setName("user")
             .setDescription("Цель"))
@@ -17,11 +17,10 @@ export default new SlashCommand({
         await interaction.deferReply();
 
         const user = options.getUser("user");
-        const image = await AnimeGif.getLink("hug");
-        console.log(image)
+        const image = await AnimeGif.getLink("cuddle");
         Builder.createEmbed()
             .setColor(ColorObject.none)
             .setImage(image)
-            .editReply(interaction, {content: `***${interaction.user.username}* обнял(а) *${user ? (user.id === interaction.user.id ? "себя" : user.username) : "всех"}* 💞**`})
+            .editReply(interaction, {content: `***${interaction.user.username}* прижмал(а) к себе *${user ? (user.id === interaction.user.id ? "себя :thinking:" : user.username) : "всех"}* 💞**`})
     }
 })

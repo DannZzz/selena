@@ -12,6 +12,7 @@ import { Game } from "../database/models/Game";
 import { Levels } from "../custom-modules/Level-xp";
 
 export enum SlashCommandIdEnum {
+    // moderation
     "ban",
     "kick",
     "mute",
@@ -19,20 +20,16 @@ export enum SlashCommandIdEnum {
     "clear",
     "warns",
     "warn-actions",
-    "hug",
-    "baka",
-    "bite",
-    "blush",
-    "kiss",
-    "nom",
-    "cry",
-    "dance",
-    "panic",
-    "lick",
-    "pat",
-    "slap",
-    "cringe",
-    "hi",
+    // reaction
+    "hug", 
+    "kiss", 
+    "slap", 
+    "wink", 
+    "pat", 
+    "kill", 
+    "cuddle", 
+    "punch", 
+    // 
     "avatar",
     "server-info",
     "help",

@@ -1,6 +1,6 @@
 import { SlashBuilder, SlashCommand } from "../../structures/SlashCommand";
-import ainasepics from "ainasepics"
 import { ColorObject } from "../../config";
+import { AnimeGif } from "../../structures/Anime-gif";
 
 export default new SlashCommand({
     id: "slap",
@@ -14,11 +14,13 @@ export default new SlashCommand({
             .setDescription("Цель"))
     ,
     async execute ({Builder, interaction, options}) {
+        await interaction.deferReply();
+
         const user = options.getUser("user");
-        const image = await ainasepics.get("slap");
+        const image = await AnimeGif.getLink("slap");
         Builder.createEmbed()
             .setColor(ColorObject.none)
-            .setImage(image.url)
-            .interactionReply(interaction, {content: `***${interaction.user.username}* дал(а) пощёчину *${user ? (user.id === interaction.user.id ? "себе" : user.username) : "всем"}* 👀**`})
+            .setImage(image)
+            .editReply(interaction, {content: `***${interaction.user.username}* дал(а) пощёчину *${user ? (user.id === interaction.user.id ? "себе" : user.username) : "всем"}* 👀**`})
     }
 })
