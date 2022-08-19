@@ -94,10 +94,14 @@ function createApp () {
         })})
     })
 
-    app.post("/api/topgg", TopggWebhook.listener(vote => {
-        console.log(vote)
-        console.log(vote.user)
-    }))
+    // app.post("/api/topgg", TopggWebhook.listener(vote => {
+    //     console.log(vote)
+    //     console.log(vote.user)
+    // }))
+
+    app.post("/api/topgg", (req, res) => {
+        console.timeLog(req.body)
+    })
 
     // connecting
     const server = http.createServer(app);
