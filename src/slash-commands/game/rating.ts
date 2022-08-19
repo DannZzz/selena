@@ -45,7 +45,7 @@ export default new SlashCommand({
         let otherButtons: Pagination['otherButtons'] = [];
 
         enemies.forEach((hd, index) => {
-            let randomPercent = client.util.random(5, 150);
+            let randomPercent = client.util.random(-30, 150);
             hd.attr.addPercentToEach(randomPercent);
             hd.attr.setLevel(Levels.levelFor(mongoHero.xp))
             const attHero = hd.avatarAttachment();
