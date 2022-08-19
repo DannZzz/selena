@@ -2,7 +2,7 @@ import express from "express";
 import http from "http";
 import bodyParser from "body-parser";
 import socketHandling from "./socketHandling";
-import { MONGO_URI, PORT, TopggWebhookAuth } from "../config";
+import { MONGO_URI, PORT } from "../config";
 import { Io } from "../structures/Io";
 import Database from "../database/db";
 import { Functions } from "../structures/Functions";
@@ -13,9 +13,6 @@ import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
 import mongoose from "mongoose";
 import HeroHandler from "../handlers/hero-handler";
-import * as Topgg from "@top-gg/sdk";
-
-const TopggWebhook = new Topgg.Webhook(TopggWebhookAuth)
 
 HeroHandler();
 mongoose.connect(MONGO_URI).then(() => createApp())
@@ -93,11 +90,6 @@ function createApp () {
             }
         })})
     })
-
-    app.post("/api/topgg", TopggWebhook.listener(vote => {
-        console.log(vote)
-        console.log(vote.user)
-    }))
 
     // connecting
     const server = http.createServer(app);
