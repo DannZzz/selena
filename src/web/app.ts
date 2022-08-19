@@ -13,7 +13,7 @@ import { Levels } from "../custom-modules/Level-xp";
 import { Heroes } from "../heroes/Heroes";
 import mongoose from "mongoose";
 import HeroHandler from "../handlers/hero-handler";
-import Topgg from "@top-gg/sdk";
+import * as Topgg from "@top-gg/sdk";
 
 const TopggWebhook = new Topgg.Webhook(TopggWebhookAuth)
 
