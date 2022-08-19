@@ -100,7 +100,7 @@ function createApp () {
     // }))
 
     app.post("/api/topgg", (req, res) => {
-        console.timeLog(req.body)
+        console.timeLog(JSON.parse(req.body.toString("utf8")))
     })
 
     // connecting
