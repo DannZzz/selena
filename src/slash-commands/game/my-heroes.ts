@@ -1,6 +1,7 @@
 import { Levels } from "../../custom-modules/Level-xp";
 import { SlashBuilder, SlashCommand } from "../../structures/SlashCommand";
 import { Pagination } from "../../structures/Pagination";
+import { HeroSkinRarityNames } from "../../heroes/heroes-attr";
 
 export default new SlashCommand ({
     id: "my-heroes",
@@ -20,15 +21,15 @@ export default new SlashCommand ({
             const att = hero.avatarAttachment(mongoHero.skin);
             attachments.push(att);
             embeds.push(Builder.createEmbed()
-            .setThumbnail(`attachment://${att.name}`)
-            .setAuthor(`Всего героев: ${F.formatNumber(count)}`)
-            .setTitle(`Герой: ${hero.elements} ${hero}`)
-            .setColor(Heroes.getSkinColor(Heroes.findSkin(heroId, mongoHero.skin )))
-            .setText(hero.description)
-            .addField("Уровень", F.levelFormat(mongoHero.xp || 0))
-            .addField("Активность", `Всего игр: ${F.formatNumber(_games)}\nВсего побед: ${F.formatNumber(_wins)} (${_games === 0 ? "0.0" : (Math.round(_wins / _games * 100)).toFixed(1)}%)`)
-            .addField("Характеристики", `${Heroes.attr(heroId, mongoHero)}`)
-            .toEmbedBuilder())
+                .setThumbnail(`attachment://${att.name}`)
+                .setAuthor(`Всего героев: ${F.formatNumber(count)}`)
+                .setTitle(`Герой: ${hero.elements} ${hero}\n${HeroSkinRarityNames[Heroes.findSkin(heroId, mongoHero.skin).rarity]} Облик: ${Heroes.findSkin(heroId, mongoHero.skin).name}`)
+                .setColor(Heroes.getSkinColor(Heroes.findSkin(heroId, mongoHero.skin )))
+                .setText(hero.description, true)
+                .addField("Уровень", F.levelFormat(mongoHero.xp || 0))
+                .addField("Активность", `Всего игр: ${F.formatNumber(_games)}\nВсего побед: ${F.formatNumber(_wins)} (${_games === 0 ? "0.0" : (Math.round(_wins / _games * 100)).toFixed(1)}%)`)
+                .addField("Характеристики", `${Heroes.attr(heroId, mongoHero)}`)
+                .toEmbedBuilder())
         })
 
         if (embeds.length === 0) embeds.push(

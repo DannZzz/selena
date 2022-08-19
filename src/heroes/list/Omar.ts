@@ -25,7 +25,7 @@ export default new Hero ({
             id: "captain-okotachi",
             name: "Капитан Окотачи",
             bonus: {dmg: 40, hp: 500},
-            cost: new Cost("primary", RaritySkinCost.elite),
+            cost: new Cost("primary", RaritySkinCost.epic),
             rarity: "epic"
         }
     ],
