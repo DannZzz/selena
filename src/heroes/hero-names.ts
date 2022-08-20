@@ -13,4 +13,7 @@ export enum HeroNames {
     "Omar" = "Омар",
     "Lucius" = "Луций",
     "Manor" = "Манор",
+    "San" = "Сан",
+    "Ninos" = "Нинос",
+    "Argon" = "Аргон",
 }

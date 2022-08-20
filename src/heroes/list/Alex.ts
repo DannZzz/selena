@@ -20,6 +20,13 @@ export default new Hero ({
             bonus: {dmg: 60},
             cost: new Cost('primary', RaritySkinCost.elite),
             rarity: "elite"
+        },
+        {
+            id: "koshmar",
+            name: "Кошмар",
+            bonus: {dmg: 50, hp: 400},
+            cost: new Cost('primary', RaritySkinCost.special),
+            rarity: "special"
         }
     ],
 })

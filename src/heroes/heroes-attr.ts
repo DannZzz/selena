@@ -97,6 +97,9 @@ export enum HeroElementsNames {
     snow = "❄",
     wind = "🌪",
     magic = "🔮",
+    rainbow = "🌈",
+    light = "🔱",
+    darkness = "⚜",
 }
 
 export const HeroElementsContrs: ObjectType<keyof typeof HeroElementsNames, (keyof typeof HeroElementsNames)[]> = {
@@ -105,8 +108,10 @@ export const HeroElementsContrs: ObjectType<keyof typeof HeroElementsNames, (key
     blood: ['magic'],
     snow: ["water"],
     wind: ["snow"],
-    magic: ["wind"],
-
+    magic: ["light"],
+    rainbow: ["wind"],
+    darkness: ["rainbow"],
+    light: ["darkness"],
 }
 
 export type HeroElementKey = keyof typeof HeroElementsNames;
