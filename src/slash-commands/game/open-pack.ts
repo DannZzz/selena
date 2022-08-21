@@ -115,7 +115,7 @@ export default new SlashCommand({
                         if (!_packData) return Builder.createError("Вы не имеете этот пак!", i.user).interactionFollowUp(i);
                         const game = await Database.get("Game").findOrCreate(interaction.user);
                         if (game.heroes[hero.id]) {
-                            if (game.heroes[hero.id].skinsHave.includes(hd.skinId)) return Builder.createError("Вы уже имеете этот Облик!", i.user).interactionReply(i);
+                            if (game.heroes[hero.id].skinsHave.includes(hd.skinId)) return Builder.createError("Вы уже имеете этот Облик!", i.user).interactionFollowUp(i);
                         } else {
                             await Database.updateHero(interaction.user.id, hero.id, { type: "add" });
                         }
