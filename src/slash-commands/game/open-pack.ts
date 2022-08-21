@@ -123,7 +123,7 @@ export default new SlashCommand({
                             Database.updateHero(interaction.user.id, hero.id, {type: "set-skin", skin: skin.id}),
                             Database.updatePack(interaction.user.id, pack.id, -1),
                         ])
-                        Builder.createEmbed().setText(`Вы получаете **${HeroSkinRarityNames[skin.rarity]}** Облик **${skin.name}** на героя **${hero}**`).setUser(i.user).interactionFollowUp(i, {files: [att]});
+                        Builder.createEmbed().setImage(`attachment://${att.name}`).setText(`Вы получаете **${HeroSkinRarityNames[skin.rarity]}** Облик **${skin.name}** на героя **${hero}**`).setUser(i.user).interactionFollowUp(i, {files: [att]});
                         
                     }
                 });
