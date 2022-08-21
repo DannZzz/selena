@@ -31,7 +31,7 @@ export interface Guild {
     usersMessagesDaily?: ObjectType<string, UserData>
     roleShop?: RoleShopItem[]
     reputation?: number
-    colors: {id: string, name: string, color: string}[]
+    colors?: {id: string, name: string, color: string}[]
 }
 
 export const Guild = mongoose.model("guild", new mongoose.Schema<Guild>({

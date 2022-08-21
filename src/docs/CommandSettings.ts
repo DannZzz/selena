@@ -111,13 +111,15 @@ export const RateMoney = () => Util.random(40, 255);
 
 export const PremiumServerDuration: {duration: string, cost: {type: keyof GuildCurrency, amount: number}, visual: string }[] = [
     {
-        cost: {type: "secondary", amount: 25000},
+        cost: {type: "secondary", amount: 250000},
         duration: "30d",
         visual: "1 месяц"
     },
     {
-        cost: {type: "secondary", amount: 50000},
+        cost: {type: "secondary", amount: 500000},
         duration: "90d",
         visual: "3 месяцев"
     }
 ]
+
+export const FreePremiumGuildDays: number = +processOr("FreePremiumGuildDays", "14");
