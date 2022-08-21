@@ -43,6 +43,7 @@ export enum SlashCommandIdEnum {
     "set-role",
     "remove-role",
     "giveaway",
+    "colors",
     "messages-top",
     "spank",
     "hero",

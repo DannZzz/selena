@@ -31,6 +31,7 @@ export interface Guild {
     usersMessagesDaily?: ObjectType<string, UserData>
     roleShop?: RoleShopItem[]
     reputation?: number
+    colors: {id: string, name: string, color: string}[]
 }
 
 export const Guild = mongoose.model("guild", new mongoose.Schema<Guild>({
@@ -45,7 +46,8 @@ export const Guild = mongoose.model("guild", new mongoose.Schema<Guild>({
     premiumUntil: { type: Date, default: null },
     secondary: { type: Number, default: 0 },
     reputation: { type: Number, default: 0 },
+    colors: { type: Array as any, default: [] },
 }))
 
-export const GuildKeys: readonly (keyof Guild)[] = ["usersMessagesDaily", "reputation", "roleShop", "usersMessages", "secondary", "_id", "commands", "prefix", "premiumUntil", "punishments", "punishmentActions"];
+export const GuildKeys: readonly (keyof Guild)[] = ["usersMessagesDaily", "reputation", "roleShop", "usersMessages", "secondary", "_id", "commands", "prefix", "premiumUntil", "punishments", "punishmentActions", "colors"];
 export const GuildKeysApi: readonly (keyof Guild)[] = ["secondary", "premiumUntil", "reputation", "_id"];
