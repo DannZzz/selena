@@ -2,6 +2,7 @@ import { Guild, User, Collection, GuildTextBasedChannel } from "discord.js"
 import { Mute, Punishment, Response } from "./CustomEventTypes"
 import { Guild as MongoGuild } from "../database/models/Guild";
 import { CurrencyType } from "./Currency";
+import { HeroId } from "../heroes/heroes-attr";
 
 export interface CustomEvents {
     mute: [Mute: Mute, _channel: GuildTextBasedChannel]
@@ -15,6 +16,7 @@ export interface CustomEvents {
     messageClear: [Clear: { channelId: string, authorId: string, request: number, deleted: number }, _channel: GuildTextBasedChannel]
     moneyChange: [Money: {type: keyof CurrencyType, moneyType: any, targetId: string, amount: number}]
     userXpChange: [OldUser: {userId: string, xp: number}, NewUser: {userId: string, xp: number}, _channel: GuildTextBasedChannel]
+    skinAdd: [Data: {userId: string, heroId: HeroId, skinId: string}, _channel: GuildTextBasedChannel]
 }
 
 const listeners = new Collection<keyof CustomEvents, Array<(...args: Response<CustomEvents[keyof CustomEvents]>) => Awaited<void>>>()

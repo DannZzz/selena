@@ -1,4 +1,5 @@
 import { RaritySkinCost } from "../../docs/CommandSettings";
+import { LimitedSkinsBuff } from "../../docs/limits";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -40,6 +41,13 @@ export default new Hero ({
             bonus: {dmg: 130, hp: 1000},
             rarity: "legendary",
             cost: new Cost("primary", RaritySkinCost.legendary)
+        },
+        {
+            id: "moon-lord",
+            name: "Лунный Лорд",
+            bonus: LimitedSkinsBuff.moon,
+            rarity: "moon",
+            cost: new Cost()
         }
     ],
     elements: new HeroElement("wind", "magic")

@@ -9,7 +9,7 @@ import { Functions } from "../structures/Functions";
 import { Cost, ObjectType } from "../structures/MainTypes";
 import { HeroCollections } from "./Collections";
 import { HeroNames } from "./hero-names";
-import { Fighter, HeroAttribute, HeroElement, HeroElementsContrs, HeroElementsNames, HeroId, HeroList, HeroRarityColor, HeroResolvable, HeroSkinRarity, SkinBonus } from "./heroes-attr";
+import { Fighter, HeroAttribute, HeroElement, HeroElementsContrs, HeroElementsNames, HeroId, HeroList, HeroRarityColor, HeroResolvable, HeroSkinRarity, HeroSkinRarityNames, SkinBonus } from "./heroes-attr";
 
 export const _heroCollection = new Collection<HeroId, Hero>();
 
@@ -40,6 +40,10 @@ export class Heroes {
 
     static get collections () {
         return HeroCollections;
+    }
+
+    static filterSkin (rarity: keyof typeof HeroSkinRarityNames) {
+        return this.filter(h => Boolean(h.skins.find(s => s.rarity === rarity)));
     }
 
     static find<N extends HeroId>(id: N): Hero;

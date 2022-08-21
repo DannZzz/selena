@@ -141,8 +141,8 @@ export default new SlashCommand({
                                             await Promise.all([
                                                 Database.addUserXp(f.userId, xp, CustomEvent, interaction.channel),
                                                 Database.addHeroXp(f.userId, f.id, HeroXpAfterWin()),
-                                                Database.addGame(f.userId, f.id, true),
-                                                Database.addGame(s.userId, s.id),
+                                                Database.addGame(f.userId, f.id, true, interaction.channel),
+                                                Database.addGame(s.userId, s.id, false, interaction.channel),
                                                 Database.changeMoney({targetId: f.userId, type: "user", moneyType: "secondary", amount, CustomEvent}),
                                             ])
                                         } else {
@@ -156,8 +156,8 @@ export default new SlashCommand({
                                             await Promise.all([
                                                 Database.addUserXp(s.userId, xp, CustomEvent, interaction.channel),
                                                 Database.addHeroXp(s.userId, s.id, HeroXpAfterWin()),
-                                                Database.addGame(f.userId, f.id),
-                                                Database.addGame(s.userId, s.id, true),
+                                                Database.addGame(f.userId, f.id, false, interaction.channel),
+                                                Database.addGame(s.userId, s.id, true, interaction.channel),
                                                 Database.changeMoney({targetId: s.userId, type: "user", moneyType: "secondary", amount, CustomEvent}),
                                             ])
                                         }

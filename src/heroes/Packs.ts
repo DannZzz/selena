@@ -9,7 +9,8 @@ export enum PackNames {
     startpack = "Пак начальных героев",
     small_chest = "Маленький сундук сокровищ",
     big_chest = "Большой сундук сокровищ",
-    love_pack = "Пак Любви"
+    love_pack = "Пак Любви",
+    moon_pack = "Лунный Пак",
 }
 
 export type PackId = keyof typeof PackNames;
@@ -18,12 +19,14 @@ export interface PackRewards {
     "hero-pick": HeroList
     "hero": HeroResolvable
     "money": RandomMoney[]
+    "skin-pick": {hero: HeroResolvable, skinId: string}[]
 }
 
 export class Pack<T extends keyof PackRewards = any>{
     id: PackId;
     type: T;
     emoji: EmojiResolvable;
+    availableUntil?: Date
     reward: () => PackRewards[T];
 
     get name () {

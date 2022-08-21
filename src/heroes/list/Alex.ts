@@ -1,4 +1,5 @@
 import { RaritySkinCost } from "../../docs/CommandSettings";
+import { LimitedSkinsBuff, SkinLimits } from "../../docs/limits";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -27,6 +28,14 @@ export default new Hero ({
             bonus: {dmg: 50, hp: 400},
             cost: new Cost('primary', RaritySkinCost.special),
             rarity: "special"
+        },
+        {
+            id: "mufar",
+            name: "Муфар",
+            bonus: LimitedSkinsBuff.moon,
+            rarity: "moon",
+            cost: new Cost("primary", RaritySkinCost.moon),
+            availableUntil: SkinLimits.moon
         }
     ],
 })

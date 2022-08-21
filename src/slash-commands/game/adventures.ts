@@ -82,7 +82,7 @@ export default new SlashCommand({
                         .setColor(Heroes.getSkinColor(skin))
                         .interactionFollowUp(interaction);
                     await Promise.all([
-                        Database.addGame(interaction.user.id, hero.id),
+                        Database.addGame(interaction.user.id, hero.id, false, interaction.channel),
                         Database.get("User").updateOne({_id: interaction.user.id}, {$set: {[`cooldowns.adventures`]: new  Date(Date.now() + 1000 * 60 * 5)}})
                     ])
                 } else {
@@ -98,7 +98,7 @@ export default new SlashCommand({
                     await Promise.all([
                         Database.addUserXp(interaction.user.id, xp, CustomEvent, interaction.channel),
                         Database.addHeroXp(interaction.user.id, hero.id, HeroXpAfterWin()),
-                        Database.addGame(interaction.user.id, hero.id, true),
+                        Database.addGame(interaction.user.id, hero.id, true, interaction.channel),
                         enemy.giveReward(interaction.user.id, CustomEvent),
                         Database.get("Game").updateOne({_id: interaction.user.id}, {$inc: {adventures: 1}}),
                         Database.get("User").updateOne({_id: interaction.user.id}, {$set: {[`cooldowns.adventures`]: new  Date(Date.now() + 1000 * 60 * 2)}})

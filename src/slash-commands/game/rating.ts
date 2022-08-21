@@ -96,7 +96,7 @@ export default new SlashCommand({
                                     .setColor(Heroes.getSkinColor(skin))
                                     .messageReply(msg);
                                 await Promise.all([
-                                    Database.addGame(interaction.user.id, hero.id),
+                                    Database.addGame(interaction.user.id, hero.id, false, interaction.channel),
                                 ])
                             } else {
                                 const xp = F.percentOf(UserXpAfterWin(), 80);
@@ -113,7 +113,7 @@ export default new SlashCommand({
                                     Database.addUserXp(interaction.user.id, xp, CustomEvent, interaction.channel),
                                     Database.addHeroXp(interaction.user.id, hero.id, HeroXpAfterWin()),
                                     Database.changeMoney({targetId: interaction.user.id, amount: money, type: "user", moneyType: "secondary", CustomEvent}),
-                                    Database.addGame(interaction.user.id, hero.id, true),
+                                    Database.addGame(interaction.user.id, hero.id, true, interaction.channel),
                                 ]);
                             }
                         }, 10 * 1000)

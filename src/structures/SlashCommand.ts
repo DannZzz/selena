@@ -64,6 +64,7 @@ export enum SlashCommandIdEnum {
     "change-nickname",
     "rank",
     "pack-info",
+    "events",
 }
 
 export enum SlashCommandCategoryEnum {

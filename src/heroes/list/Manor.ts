@@ -1,5 +1,5 @@
 import { RaritySkinCost } from "../../docs/CommandSettings";
-import { SkinLimits } from "../../docs/limits";
+import { LimitedSkinsBuff, SkinLimits } from "../../docs/limits";
 import { Cost } from "../../structures/MainTypes";
 import { Hero } from "../Heroes";
 import { HeroAttribute, HeroElement } from "../heroes-attr";
@@ -46,10 +46,18 @@ export default new Hero ({
         {
             id: "anubis",
             name: "Анубис",
-            bonus: {dmg: 100},
+            bonus: LimitedSkinsBuff.egyptian,
             cost: new Cost('primary', RaritySkinCost.egyptian),
             rarity: "egyptian",
             availableUntil: SkinLimits.egyptian
+        },
+        {
+            id: "moon-strannik",
+            name: "Странник Луны",
+            bonus: LimitedSkinsBuff.moon,
+            cost: new Cost("primary", RaritySkinCost.moon),
+            rarity: "moon",
+            availableUntil: SkinLimits.moon
         }
     ],
 })

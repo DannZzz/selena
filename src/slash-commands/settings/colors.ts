@@ -7,68 +7,68 @@ export default new SlashCommand({
   category: "Settings",
   data: new SlashBuilder("Administrator")
     .setName('colors')
-    .setDescription('Управление цветными ролями.')
+    .setDescription('Управление цветными ролями')
     .addSubcommand(cmd => cmd
       .setName("creat-role-color")
-      .setDescription("Создать цветная роль и добавить в список.")
+      .setDescription("Создать цветная роль и добавить в список")
       .addStringOption(o => o
         .setName("color-name")
-        .setDescription("Название цвета, напишите простое название, например: Red.")
+        .setDescription("Название цвета, напишите простое название, например: Red")
         .setRequired(true)
       )
       .addStringOption(o => o
         .setName("hex-color")
-        .setDescription("Цвет роли, HEX код или например RANDOM, для рандомного выбора.")
+        .setDescription("Цвет роли, HEX код или например RANDOM, для рандомного выбора")
         .setRequired(true)
       )
     )
     .addSubcommand(cmd => cmd
       .setName("list")
-      .setDescription("Посмотреть все цветные роли.")
+      .setDescription("Посмотреть все цветные роли")
     )
     .addSubcommand(cmd => cmd
       .setName("create-reaction")
-      .setDescription("Создать реакцию на канале.")
+      .setDescription("Создать реакцию на канале")
     )
     .addSubcommand(cmd => cmd
       .setName("add-role")
-      .setDescription("Добавить существующая роль в список.")
+      .setDescription("Добавить существующая роль в список")
       .addRoleOption(o => o
         .setName("role")
-        .setDescription("Роль сервера.")
+        .setDescription("Роль сервера")
         .setRequired(true)
       )
       .addStringOption(o => o
-        .setDescription("Давать другое название в списке.")
+        .setDescription("Давать другое название в списке")
         .setName("name")
       )
     )
     .addSubcommand(cmd => cmd
       .setName("delete-role-color")
-      .setDescription("Удалить цветная роль.")
+      .setDescription("Удалить цветная роль")
       .addIntegerOption(o => o
         .setName("number")
-        .setDescription("Номер из списка цветов.")
+        .setDescription("Номер из списка цветов")
         .setRequired(true)
       )
       .addStringOption(o => o
-        .setDescription("Выбирай \"Да\", если не хочешь удалить роль.")
+        .setDescription("Выбирай \"Да\", если не хочешь удалить роль")
         .setName("no-delete")
         .setChoices(...toChoices([["Да", "yes"], ["Нет", "no"]]))
       )
     )
     .addSubcommand(cmd => cmd
       .setName("delete-all")
-      .setDescription("Удалять все цвета из списка, и роли(выбор).")
+      .setDescription("Удалять все цвета из списка, и роли(выбор)")
       .addStringOption(o => o
-        .setDescription("Выбирай \"Да\", если не хочешь удалить роли.")
+        .setDescription("Выбирай \"Да\", если не хочешь удалить роли")
         .setName("no-delete")
         .setChoices(...toChoices([["Да", "yes"], ["Нет", "no"]]))
       )
     )
     .addSubcommand(cmd => cmd
       .setName("create-random-color")
-      .setDescription("Создать роль с рандомным цветом.")
+      .setDescription("Создать роль с рандомным цветом")
     ),
   permissions: "Administrator",
   async execute ({ interaction, options, client, F, Builder, Database, thisGuild, isGuildPremium }) {

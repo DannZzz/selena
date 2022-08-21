@@ -1,5 +1,5 @@
 import { stripIndents } from "common-tags";
-import { ActionRowBuilder, EmojiResolvable, Message } from "discord.js";
+import { ActionRowBuilder, EmojiResolvable, GuildTextBasedChannel, Message } from "discord.js";
 import { Currency } from "../../structures/Currency";
 import { SlashBuilder, SlashCommand } from "../../structures/SlashCommand";
 import { HeroAttributesEnum, HeroId, HeroSkinRarityNames } from "../../heroes/heroes-attr";
@@ -154,7 +154,7 @@ export default new SlashCommand({
                         .setStyle("Primary")
                         .toButtonBuilder(),
                     onclick: async (i) => {
-                        const resp = await setOrBuySkin(i.user.id, hero.id, hero.id);
+                        const resp = await setOrBuySkin(i.user.id, hero.id, hero.id, CustomEvent, interaction.channel);
                         Builder.createEmbed().setText(resp).setUser(i.user).interactionFollowUp(i);
                     }
                 })
@@ -171,7 +171,7 @@ export default new SlashCommand({
                             .setStyle("Primary")
                             .toButtonBuilder(),
                         onclick: async (i) => {
-                            const resp = await setOrBuySkin(i.user.id, hero.id, skin.id);
+                            const resp = await setOrBuySkin(i.user.id, hero.id, skin.id, CustomEvent, interaction.channel);
                             Builder.createEmbed().setText(resp).setUser(i.user).interactionFollowUp(i);
                         }
                     });
@@ -209,7 +209,7 @@ export default new SlashCommand({
     }
 })
 
-async function setOrBuySkin(userId: string, heroId: HeroId, skin: string, ce?: CustomEvent): Promise<string> {
+export async function setOrBuySkin(userId: string, heroId: HeroId, skin: string, ce: CustomEvent, channel: GuildTextBasedChannel): Promise<string> {
     const userData = await Database.get("User").findOrCreate("_id", userId);
     const gameData = await Database.get("Game").findOrCreate("_id", userId);
     const haveHero = gameData.heroes[heroId];
@@ -225,7 +225,8 @@ async function setOrBuySkin(userId: string, heroId: HeroId, skin: string, ce?: C
                 Database.updateHero(userId, heroId, {type: "set-skin", skin: skinData.id}),
                 Database.changeMoney({targetId: userId, type: "user", moneyType: skinData.cost.type, amount: -skinData.cost.amount, CustomEvent: ce})
             ])
-            return `Успешно куплен **${HeroSkinRarityNames[skinData.rarity]}** облик: **${skinData.name}**.`
+            ce.emit("skinAdd", {userId, heroId, skinId: skin}, channel)
+            return `Успешно куплен **${HeroSkinRarityNames[skinData.rarity]}** Облик: **${skinData.name}**.`
         } else {
             return `${Heroes.findSkin(heroId, skin).cost}`
         }

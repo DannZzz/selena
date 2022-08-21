@@ -35,7 +35,10 @@ export default new SlashCommand({
             rwString = `получите ${F.andOr(Currency.list("user").map(x => `${x}`))} в рандомном количестве.`
         } else if (pack.type === "hero-pick") {
             const p = pack as Pack<'hero-pick'>;;
-            rwString = `выберите одного из этих героев: ${F.andOr(p.reward().heroes.map(x => `${x.emoji} **${x}**`), true)}.`
+            rwString = `выберите один из этих героев: ${F.andOr(p.reward().heroes.map(x => `${x.emoji} **${x}**`), true)}.`
+        } else if (pack.type === "skin-pick") {
+            const p = pack as Pack<"skin-pick">;
+            rwString = `выберите один из этих обликов: ${F.andOr(p.reward().map(hd => `**${F.resolveHero(hd.hero)[0].skins.find(s => s.id === hd.skinId)?.name || "Неизвестный"}** (${F.resolveHero(hd.hero)[0]})`), true)}`
         }
         
         Builder.createEmbed()
