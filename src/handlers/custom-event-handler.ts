@@ -10,7 +10,11 @@ import ms from "ms";
 import { Durations } from "../docs/SlashOptions";
 import { Levels } from "../custom-modules/Level-xp";
 import { OnNewLevelAddingAttr } from "../docs/CommandSettings";
-import { HeroAttribute } from "../heroes/heroes-attr";
+import { HeroAttribute, HeroSkinRarityNames } from "../heroes/heroes-attr";
+import { Heroes } from "../heroes/Heroes";
+import { SkinLimits } from "../docs/limits";
+import { Pack, Packs } from "../heroes/Packs";
+const F = Functions;
 
 export default function HandleCustomEvents() {
     const Builder = new DiscordComponentBuilder();
@@ -55,6 +59,29 @@ export default function HandleCustomEvents() {
             const ug = await Database.get("Game").findOneFilter({_id: newUser.userId});
             if (!ug) return;
             await Database.get("Game").updateOne({_id: newUser.userId}, {$set: {levelBonusAttr: new HeroAttribute({...OnNewLevelAddingAttr}).add(ug.levelBonusAttr || {})}})
+        }
+    })
+
+    CustomEvent.on("skinAdd", async (thisGuild, data, channel) => {
+        if (!channel) return;
+        const skin = Heroes.findSkin(data.heroId, data.skinId);
+        if (skin.rarity === "moon") {
+            if (!F.isLimited(SkinLimits.moon)) return;
+            if (skin.id === "moon-lord") return;
+            const user = await Database.get("Game").findOne("_id", data.userId);
+            if (!user) return;
+            const pack = Packs.find("moon_pack") as Pack<"skin-pick">;
+            if (pack.reward().every(hd => {
+                const hero = F.resolveHero(hd.hero)[0];
+                if (!user.heroes[hero.id]) return false;
+                return user.heroes[hero.id].skinsHave.includes(hd.skinId);
+            })) {
+                if (!user.heroes['Atilla']) await Database.updateHero(data.userId, "Atilla", {type: "add"});
+                await Database.updateHero(data.userId, "Atilla", {type: "set-skin", skin: "moon-lord"});
+                const hero = Heroes.find("Atilla");
+                const attSkin = Heroes.findSkin(hero.id, "moon-lord");
+                Builder.createEmbed().setText(`**${user.nickname}** собрал все **${HeroSkinRarityNames.moon}** Облики и получает Облик **${attSkin.name}** на героя **${hero}**.`).sendToChannel(channel);
+            }
         }
     })
 }

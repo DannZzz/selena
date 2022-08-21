@@ -11,7 +11,8 @@ export const RaritySkinCost: ObjectType<keyof Omit<typeof HeroSkinRarityNames, "
     special: 799,
     epic: 1099,
     legendary: 1599,
-    egyptian: 599
+    egyptian: 599,
+    moon: 1289,
 }
 
 export const PrimaryMoneyBuy: ReadonlyArray<{primaryAmount: number, inRub: number}> = [

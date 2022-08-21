@@ -14,6 +14,7 @@ import { MaxNicknameLength, UserDatabaseOptions } from "../docs/CommandSettings"
 import { PackId, Packs } from "../heroes/Packs";
 import { GuildTextBasedChannel } from "discord.js";
 import { Util } from "client-discord";
+import { DiscordComponentBuilder } from "../structures/DiscordComponentBuilder";
 
 const { ObjectFromKeys } = Functions;
 
@@ -103,11 +104,19 @@ export default class Database {
         return Math.round(xp + thisUserGame.xp)
     }
 
-    static async addGame(userId: string, heroId: HeroId | string, win: boolean = false) {
+    static async addGame(userId: string, heroId: HeroId | string, win: boolean = false, channel: GuildTextBasedChannel) {
         const thisUserGame = await Database.get("Game").findOrCreate("_id", userId);
         if (!thisUserGame.heroes[heroId]) return null;
         await Database.get("Game").updateOne({_id: userId}, {$inc: { [`heroes.${heroId}.games`]: 1, [`heroes.${heroId}.wins`]: win ? 1 : 0}})
-
+        if (win) {
+            if (Functions.isLimited(Packs.find("moon_pack")?.availableUntil)) {
+                const random = Util.random(1, 100)
+                if (random <= 2) {
+                    await this.updatePack(userId, "moon_pack", 1);
+                    new DiscordComponentBuilder().createEmbed().setText(`**${thisUserGame.nickname}** вам повезло, вы получаете ${Packs.find("moon_pack")}`).sendToChannel(channel)
+                }
+            }
+        }
     }
 
     static async updateHero(userId: string, heroId: HeroId, data: {type: "add", skin?: string} | {type: "remove"} | HeroAttribute | {type: "set-skin", skin: string}) {
