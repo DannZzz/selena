@@ -1,4 +1,5 @@
 import { stripIndents } from "common-tags";
+import { DevNames } from "../../config";
 import { FightTemplate } from "../../custom-modules/fight-template";
 import { Levels } from "../../custom-modules/Level-xp";
 import { HeroXpAfterWin, RateMoney, UserXpAfterWin, XpEmoji } from "../../docs/CommandSettings";
@@ -75,6 +76,13 @@ export default new SlashCommand({
                         .toButtonBuilder(),
                     onclick: async (i) => {
                         const att = await FightTemplate.duel(hero.avatarAttachment(skin.id).attachment as any, hd.avatarAttachment().attachment as any);
+                        let isDevWar = client.util.random(1, 100) <= 5;
+
+                        if (isDevWar) {
+                            Builder.createEmbed().setTitle("Бой с Разработчиком!").setText(`**${DevNames.random()}** бросил вам вызов!\n\nОн значительно усилил противника и удвоил награду!`).setUser(interaction.user).sendToChannel(interaction.channel)
+                            hd.attr.addPercentToEach(45);
+                        }
+
                         const msg = await Builder.createEmbed()
                             .setTitle(`Рейтинговая Битва`)
                             .setColor(Heroes.getSkinColor(skin))
@@ -82,6 +90,8 @@ export default new SlashCommand({
                             .addField(`(Вы) ${hero.elements} ${hero} (\`${F.formatNumber(Levels.levelFor(mongoHero.xp))} lvl\`)`, `**${skin.name}**\n${Heroes.attr(hero.id, mongoHero)}`, true)
                             .addField(`${hd.elements} ${hd}`, `${hd.attr}`, true)
                             .sendToChannel(interaction.channel, { files: [att] });
+
+                        
 
                         const result = Heroes.fight({ noSkinBonus: true, anyId: interaction.user.id, id: hero.id, attr: Heroes.attr(hero.id, mongoHero), skin: skin.id }, { anyId: "enemy", id: hd.id, attr: hd.attr, skin: hd.id });
                         setTimeout(async () => {hd
@@ -99,8 +109,8 @@ export default new SlashCommand({
                                     Database.addGame(interaction.user.id, hero.id, false, interaction.channel),
                                 ])
                             } else {
-                                const xp = F.percentOf(UserXpAfterWin(), 80);
-                                const money = RateMoney();
+                                const xp = F.percentOf(UserXpAfterWin(), 80) * (isDevWar ? 2 : 1);
+                                const money = RateMoney() * (isDevWar ? 2 : 1);
                                 Builder.createEmbed()
                                     .setTitle(`Рейтинговая Битва`)
                                     .setSuccess("Вы Выиграли.")

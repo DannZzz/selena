@@ -12,11 +12,22 @@ export const DEFAULT_PREFIX: string = "s!";
 export const _dev = "382906068319076372";
 export const Donate_Channel: string = processOr("Donate_Channel", "949335983596376095");
 export const SUPPORT_SERVER_LINK: string = processOr("SUPPORT_SERVER_LINK", "https://discord.gg/sMDv6BaWby");
+
 export const DonationAlertsLink: string = processOr("DonationAlertsLink", "https://www.donationalerts.com/r/dann_selena");
 
 export const PORT = +processOr("PORT", 3000 + "");
 
 export const WebName: string = processOr("WebName", "http://localhost:"+PORT);
+
+export class DevNames {
+    static list () {
+        return ["Dann"];
+    }
+
+    static random() {
+        return this.list()[Math.floor(Math.random() * this.list().length)]
+    }
+} 
 
 export const OneDayMs = 86400 * 1000;
 
