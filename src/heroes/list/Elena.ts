@@ -16,6 +16,20 @@ export default new Hero ({
     elements: new HeroElement("snow", "rainbow"),
     skins: [
         {
+            id: "mars-adventure",
+            name: "Марсианское Путешествие",
+            bonus: {dmg: 80, hp: 600, dxt: 10},
+            rarity: "epic",
+            cost: new Cost("primary", RaritySkinCost.epic),
+        },
+        {
+            id: "queen-of-angels",
+            name: "Королева Ангелов",
+            bonus: {dmg: 100, hp: 750, dxt: 10},
+            cost: new Cost("primary", RaritySkinCost.legendary),
+            rarity: "legendary"
+        },
+        {
             id: "moon-vspishka",
             name: "Лунная Вспышка",
             bonus: LimitedSkinsBuff.moon,

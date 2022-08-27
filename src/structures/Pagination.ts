@@ -12,6 +12,7 @@ export interface PaginationOptions {
     readonly otherButtons?: {button: ButtonBuilder, onclick: (interaction: ButtonInteraction) => any, end?: boolean}[]
     readonly endCallback?: (timeout: boolean) => any
     readonly startCallback?: () => any
+    readonly editReply?: true
 }
 
 export class Pagination implements PaginationOptions {
@@ -24,6 +25,7 @@ export class Pagination implements PaginationOptions {
     readonly endCallback?: (timeout: boolean) => any
     readonly startCallback?: () => any
     readonly otherButtons?: {button: ButtonBuilder, onclick: (interaction: ButtonInteraction) => any, end?: boolean}[]
+    readonly editReply?: true
 
     constructor(options: PaginationOptions) {
         Object.assign(this, options);
@@ -57,7 +59,7 @@ export class Pagination implements PaginationOptions {
         const dis = this.embeds.length === 1 ? true : false;
         const row = new ActionRowBuilder().addComponents(buttons(dis));
         const anotherRow = this.getThisButtons(dis, page) ? new ActionRowBuilder().addComponents(this.getThisButtons(dis, page)) : null;
-        const curPage = await this.interaction.reply({ fetchReply: true, embeds: [this.embeds[page].setFooter({ text: `${page + 1} / ${this.embeds.length}` })], files: this?.attachments?.length > 0 ? [this.attachments[page]] : [] , components: [...([row, anotherRow].filter(m => m) as any[])] }) as Message;
+        const curPage = await this.interaction[this.editReply ? "editReply" : "reply"]({ fetchReply: true, embeds: [this.embeds[page].setFooter({ text: `${page + 1} / ${this.embeds.length}` })], files: this?.attachments?.length > 0 ? [this.attachments[page]] : [] , components: [...([row, anotherRow].filter(m => m) as any[])] }) as Message;
 
         if (dis) return;
         const collector = curPage.createMessageComponentCollector({
@@ -151,7 +153,7 @@ export class Pagination implements PaginationOptions {
         const dis = this.embeds.length === 1 ? true : false;
         const row = new ActionRowBuilder().addComponents(buttons(dis));
         const anotherRow = this.getThisButtons(dis, page) ? new ActionRowBuilder().addComponents(this.getThisButtons(dis, page)) : null;
-        const curPage = await this.interaction.reply({ fetchReply: true, embeds: [this.embeds[page].setFooter({ text: `${page + 1} / ${this.embeds.length}` })], files: this?.attachments?.length > 0 ? [this.attachments[page]] : [] , components: [...([row, anotherRow].filter(m => m) as any[])] }) as Message;
+        const curPage = await this.interaction[this.editReply ? "editReply" : "reply"]({ fetchReply: true, embeds: [this.embeds[page].setFooter({ text: `${page + 1} / ${this.embeds.length}` })], files: this?.attachments?.length > 0 ? [this.attachments[page]] : [] , components: [...([row, anotherRow].filter(m => m) as any[])] }) as Message;
         if (dis) return;
         const collector = curPage.createMessageComponentCollector({
             filter: i => {
