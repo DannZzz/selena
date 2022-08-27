@@ -91,8 +91,6 @@ export default new SlashCommand({
                             .addField(`${hd.elements} ${hd}`, `${hd.attr}`, true)
                             .sendToChannel(interaction.channel, { files: [att] });
 
-                        
-
                         const result = Heroes.fight({ noSkinBonus: true, anyId: interaction.user.id, id: hero.id, attr: Heroes.attr(hero.id, mongoHero), skin: skin.id }, { anyId: "enemy", id: hd.id, attr: hd.attr, skin: hd.id });
                         setTimeout(async () => {hd
                             _rate_limit_.delete(interaction.user.id)
